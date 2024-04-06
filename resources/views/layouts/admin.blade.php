@@ -63,17 +63,23 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    Admin: {{ Auth::user()->name }} <i class="fa fa-user" aria-hidden="true"></i>
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+
+                                    <a href="{{ route('admin.book') }}" class="dropdown-item">Lista Libri</a>
+                                    <a href="" class="dropdown-item">Clienti Registrati</a>
+                                    <a href="" class="dropdown-item">Ordini</a>
+
+                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -83,6 +89,8 @@
                 </div>
             </div>
         </nav>
+
+
 
 
 

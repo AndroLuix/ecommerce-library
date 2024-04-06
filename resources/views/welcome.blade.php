@@ -32,16 +32,7 @@
                 </li>
                 
 
-                @if ( App\Models\Admin::all()->first())
-                    
-                @else
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admin.login') }}">Login as Admin</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admin.login') }}">Sign in as Admin</a>
-                </li>
-                @endif
+               
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Sign in</a>
@@ -50,6 +41,21 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
 
+            </ul>
+
+            
+        </div>
+        <div>
+            <ul class="navbar-nav" style="float: right;">
+                @if (App\Models\Admin::exists())
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('admin.login.attempt') }}">Login as Admin</a>
+                    </li>
+                @else
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('admin.signin.attempt') }}">Sign in as Admin</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>

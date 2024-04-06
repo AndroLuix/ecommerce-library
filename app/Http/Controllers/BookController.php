@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,15 +13,22 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        // show dashboard with books with all categoires
+        $categories = Category::all();
+        $books = Book::all();
+        return view('admin.book.books', compact('books','categories'));
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = $request->all();
+
+        Book::create($data);
+        
     }
 
     /**
