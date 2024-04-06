@@ -23,7 +23,7 @@ Inizia clonando il progetto:
 - Apri il terminale e vai al progetto
 Apri il progetto con il temrinale e digita
  ```
- cd C:/Users/user/my_project
+ cd C:/Users/user/project-form-github
   ```
 
 - clona il progetto 
