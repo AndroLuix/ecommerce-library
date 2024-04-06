@@ -14,6 +14,8 @@ Il progetto non è ancora terminato
 ## Requisiti
 - PHP 8.1
 è necessario avere una versione di PHP superiore alla 7.3
+- Node
+è necessario avere node, perlomeno la versione 18
 - MySQL 8.3 o MariaDB
 Creare un database 'ecommerce_library' 
 
@@ -23,6 +25,22 @@ Apri il progetto con il temrinale e digita
  ```
  composer install
  ```
+
+ in seguito installare la libreria node_modules
+  ```
+ npm install
+ ```
+in seguito per la configurazione di bootsrap/ui
+  ```
+ npm install && npm run dev
+ ```
+ 
+ - Effettua la migrazione per la struttura del database
+```
+php artisan migrate
+ ```
+
+
 
 ## About Laravel
 
