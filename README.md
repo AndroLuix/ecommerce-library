@@ -7,6 +7,23 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# In Wokirng...
+
+Il progetto non è ancora terminato
+
+## Requisiti
+- PHP 8.1
+è necessario avere una versione di PHP superiore alla 7.3
+- MySQL 8.3 o MariaDB
+Creare un database 'ecommerce_library' 
+
+Inizia clonando il progetto:
+- Apri il terminale e vai al progetto
+Apri il progetto con il temrinale e digita
+ ```
+ composer install
+ ```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
