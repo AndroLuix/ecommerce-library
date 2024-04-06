@@ -30,9 +30,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
-                
-
-               
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Sign in</a>
@@ -43,7 +40,7 @@
 
             </ul>
 
-            
+
         </div>
         <div>
             <ul class="navbar-nav" style="float: right;">
@@ -64,11 +61,20 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Welcome to the Book Library</h1>
+
+
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <div class="d-flex flex-row p-2 gap-3 shadow rounded m-2" style="border: solid 1px black;">
+                    <a class=" btn btn-primary" href="{{ route('login') }}">Login</a>
+
+
+                    <a class=" btn btn-dark" href="{{ route('register') }}">Sign in</a>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Search for Books</h5>
+
                         <form action="#" method="GET">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Search for books...">

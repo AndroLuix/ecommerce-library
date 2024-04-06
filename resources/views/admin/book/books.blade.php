@@ -1,6 +1,16 @@
 @extends('layouts.admin')
 
+
 @section('content')
+
+<style>
+    .custom-file-input:lang(it)~.custom-file-label::after {
+   content: "Sfoglia";
+ }
+ .custom-file-input~.custom-file-label::after {
+   content: "Inserisci Immagine di copertina";
+ }
+</style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -73,6 +83,18 @@
                             <input required placeholder="Descrizione" max="50" type="text" name="description"
                                 class="form-control" />
                         </div>
+
+                        <div class="form-group my-2">
+                            <input required placeholder="Autore" max="50" type="text" name="Autore del libro"
+                                class="form-control" />
+                        </div>
+
+                        <div class="form-group my-2">
+                            <input type="file" hidden id="img" name="image" accept="image/*" class="custom-file-input">
+                            <label class="custom-file-label btn btn-outline-primary" for="img" data-browse="Inserisci immagine di copertina"></label> 
+                        </div>
+
+
                         <select class="form-select" placeholder="Seleziona Categroia" required
                             aria-label="Default select example">
                             <option value="" disabled selected>Seleziona la categoria del libro</option>
@@ -140,5 +162,25 @@
         function closeModal(idElement) {
             $(idElement).modal('hide')
         }
+
+
+        
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputFile = document.getElementById('img');
+        const label = inputFile.nextElementSibling;
+    
+        inputFile.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                label.textContent = file.name;
+            } else {
+                // Non è necessario modificare questo codice
+                label.textContent = label.getAttribute('datae-oooo');
+            }
+        });
+    });
     </script>
 @endsection
