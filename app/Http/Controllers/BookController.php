@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class BookController extends Controller
 {
@@ -15,8 +17,8 @@ class BookController extends Controller
     {
         // show dashboard with books with all categoires
         $categories = Category::all();
-        $books = Book::all();
-        return view('admin.book.books', compact('books','categories'));
+        $books = Book::orderBy('updated_at', 'desc')->paginate(8);
+        return view('admin.book.bookslist', compact('books','categories'));
 
     }
 
@@ -25,10 +27,34 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
-        $data = $request->all();
 
+        // validazione
+        $rules = [
+            'image' => 'required|max:2048',
+        ];
+    
+        $customMessages = [
+            'max' => "Immagine di dimensione troppo grande",
+            'required' => "è richiesta un'immagine"
+        ];
+
+        $validator =  Validator::make($request->all(),$rules,$customMessages);
+        // Verifica se la validazione fallisce
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+        //In caso si validazione
+        $data = $request->except('_token');
+        // file
+        $file = $request->file('image');
+        // path
+        $pathGrezza = $file->store('public/covers');
+        // nome path salvata nel DB
+        $data['image'] = str_replace('public/','', 'storage/'.$pathGrezza);;
         Book::create($data);
         
+        return redirect()->back()->with('success','Libro Pubblicato sul tuo sito!');
     }
 
     /**
@@ -68,6 +94,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        return back()->with('success','Libro Eliminato!');
     }
 }

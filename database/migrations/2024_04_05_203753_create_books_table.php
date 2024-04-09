@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->decimal('price', 8, 2);
-            $table->unsignedBigInteger('category_id');
-            $table->timestamps();
-            $table->foreign('category_id')
-            ->references('id')
-            ->on('category_books')
-            ->onDelete('cascade')->onUpdate('cascade');
-        });
+        if (!Schema::hasTable('books')) {
+            Schema::create('books', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->text('description');
+                $table->decimal('price', 8, 2);
+                $table->unsignedBigInteger('category_id');
+                $table->timestamps();
+                $table->foreign('category_id')
+                    ->references('id')
+                    ->on('category_books')
+                    ->onDelete('cascade')->onUpdate('cascade');
+            });
+        }
     }
 
     /**

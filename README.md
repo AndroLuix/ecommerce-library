@@ -48,6 +48,12 @@ in seguito per la configurazione di bootsrap/ui
 php artisan migrate
  ```
 
+## Popolazione del Database
+
+Per popolare il database inziamo con la tabella delle categorie dei libri: 
+ ```
+php artisan db:seed --class=CategoriesTableSeeder
+ ```
 
 
 ## About Laravel
