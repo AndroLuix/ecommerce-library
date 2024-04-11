@@ -17,10 +17,19 @@ class BookController extends Controller
     {
         // show dashboard with books with all categoires
         $categories = Category::all();
-        $books = Book::orderBy('updated_at', 'desc')->paginate(8);
+        $books = Book::orderBy('updated_at', 'desc')->get();
+        return view('admin.book.bookslist', compact('books','categories'));
+    }
+
+    public function booksCategory(Request $request){
+        $req = $request->all();
+        $categories = Category::all();
+        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $req['category_id'])->get();
+        //dd($books);
         return view('admin.book.bookslist', compact('books','categories'));
 
     }
+    
 
     /**
      * Show the form for creating a new resource.

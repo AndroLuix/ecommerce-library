@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => '/admin'], function(){
 
     // books
     Route::get('/books', [BookController::class,'index'])->name('admin.book');
+    Route::get('/books/category',[BookController::class,'booksCategory'])->name('admin.book.category');
     Route::post('/books/create', [BookController::class,'create'])->name('admin.book.create');
     Route::delete('/book/{book}/delete',[BookController::class,'destroy'])->name('admin.book.delete');
     
