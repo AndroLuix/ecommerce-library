@@ -22,7 +22,12 @@ class BookController extends Controller
     }
 
     public function booksCategory(Request $request){
+        
         $req = $request->all();
+
+        if($req['category_id'] == 'tutti'){
+            return redirect()->route('admin.book');
+        }
         $categories = Category::all();
         $books = Book::orderBy('updated_at', 'desc')->where('category_id', $req['category_id'])->get();
         //dd($books);
@@ -77,9 +82,17 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Book $book, $categoryName)
     {
-        //
+        
+        $categories = Category::all();
+   
+        $category = Category::where('name',$categoryName)->first();
+     
+        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $category->id)->get();
+        //dd($books);
+        return view('admin.book.bookslist', compact('books','categories'));
+
     }
 
     /**
@@ -87,7 +100,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $categories = Category::all();
+    return view('admin.book.editbook', compact('book','categories'));
     }
 
     /**
@@ -95,7 +109,45 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        if($request->hasFile('image')){
+        // validazione
+        $rules = [
+            'image' => 'max:2048',
+        ];
+    
+        $customMessages = [
+            'max' => "Immagine di dimensione troppo grande",
+        ];
+        
+
+
+        $validator =  Validator::make($request->all(),$rules,$customMessages);
+        // Verifica se la validazione fallisce
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+    }
+
+        // aggiornamento dati
+        $data = $request->all();
+
+        if(request()->hasFile('image')){
+            $file = $request->file('image');
+        // path
+        $pathGrezza = $file->store('public/covers');
+        // nome path salvata nel DB
+        $data['image'] = str_replace('public/','', 'storage/'.$pathGrezza);
+
+        }else{
+            unset($data['image']);
+        }
+        
+
+        
+        $book->update($data);
+
+        return back()->with('success','Sono stati aggiornati i dati del libro');
+   
     }
 
     /**

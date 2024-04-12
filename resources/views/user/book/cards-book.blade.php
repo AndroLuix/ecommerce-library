@@ -8,13 +8,13 @@
         </div>
         <div class="d-flex flex-row">
             @if (count($categories) > 0)
-                <form action="{{ route('admin.book.category') }}" method="GET">
+                <form action="{{ route('any.home.category') }}" method="GET">
                     <select onchange="this.form.submit()" class="form-select select2" name="category_id"
                         aria-label="multiple select example">
                         <option selected disabled>Seleziona Categoria</option>
                         <option value="tutti">Visualizza Tutti</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id}}">{{ $category->name }}</option>
                         @endforeach
                     </select>
 
@@ -39,6 +39,27 @@
                             <img class="card-img-left example-card-img-responsive p-2" style="width: 180px" 
                                 height="300px" src="{{ asset($book->image) }}" />
 
+                                 <!-- form for book -->
+                            <div class=" m-3 gap-3">
+
+                                <form action="{{ route('admin.book.delete', $book->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        onclick="return confirm('Sicuro di voler eliminare il libro {{ $book->title }}?')"
+                                        type="submit" class="card-link btn btn-outline-primary btn-sm">Aggiungi al Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                                    </button>
+                                </form>
+
+                                <button href="{{route('admin.book.edit', $book)}}"
+                                 class="card-link btn btn-outline-success btn-sm mt-3"
+                                  >Acquista Ora
+                                </button>
+
+                            </div>
+
+
                             
                         </div>
 
@@ -57,23 +78,7 @@
                             <ul class="list-group list-group-flush col-md-10">
                                 <li class="list-group-item propriety-card small">Prezzo {{ $book->price }} €</li>
                             </ul>
-                            <!-- form for book -->
-                            <div class=" d-flex flex-row justify-content-around mt-3">
-
-                                <form action="{{ route('admin.book.delete', $book->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        onclick="return confirm('Sicuro di voler eliminare il libro {{ $book->title }}?')"
-                                        type="submit" class="card-link btn btn-outline-danger btn-sm">Elimina
-                                    </button>
-                                </form>
-
-                                <a href="{{route('admin.book.edit', $book)}}" class="card-link btn btn-outline-primary btn-sm"
-                                    style="margin-left:5px">Modfica</a>
-
-                            </div>
-
+                           
                         </div>
                     </div>
                 @endforeach

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderItem;
-use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderItemController extends Controller
+class CardsUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +17,9 @@ class OrderItemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $data = $request->all();
-        $data['user_id'] = Auth::id();
-        OrderItem::create($data); 
-     return back()->with('success','Ordine dell\'Articolo Aggiunto'); 
+        //
     }
 
     /**
@@ -39,7 +33,7 @@ class OrderItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OrderItem $orderItem)
+    public function show(string $id)
     {
         //
     }
@@ -47,7 +41,7 @@ class OrderItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OrderItem $orderItem)
+    public function edit(string $id)
     {
         //
     }
@@ -55,7 +49,7 @@ class OrderItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OrderItem $orderItem)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -63,7 +57,7 @@ class OrderItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OrderItem $orderItem)
+    public function destroy(string $id)
     {
         //
     }
