@@ -56,7 +56,11 @@ Route::get('/home/{categoryBook}',[HomeController::class,'showCateogry'])->name(
 Route::post('/add-to-card',[OrderItemController::class,'create'])->name('book.add');
 
 // carrello
-Route::get('carrello/{user}',[OrderItemController::class,'index'])->name('book.carrello');
+Route::get('/carrello/{user}',[OrderItemController::class,'index'])->name('book.carrello');
+Route::post('/carrello/{orderId}/plus',[OrderItemController::class,'plus'])->name('carrello.plus');
+Route::post('/carrello/{orderId}/minus',[OrderItemController::class,'minus'])->name('carrello.minus');
+Route::get('/carrello/getdata/{idOrder}',[OrderItemController::class,'getCarrelloData'])->name('carrello.data');
+
 
 
 

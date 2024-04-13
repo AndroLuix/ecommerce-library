@@ -47,6 +47,63 @@ class OrderItemController extends Controller
      return back()->with('success','Ordine dell\'Articolo Aggiunto'); 
     }
 
+    public function plus($orderId)
+    {
+        // Trova l'elemento nel carrello
+        $orderItem = OrderItem::findOrFail($orderId);
+
+        // Aggiungi una quantità
+        $orderItem->quantity += 1;
+        $orderItem->save();
+
+        // Restituisci una risposta JSON o reindirizza a una pagina appropriata
+        return response()->json(['success' => true]);
+    }
+
+    public function minus($orderId)
+    {
+        // Trova l'elemento nel carrello
+        $orderItem = OrderItem::findOrFail($orderId);
+
+        // Verifica se la quantità è maggiore di 1 prima di diminuire
+        if ($orderItem->quantity > 1) {
+            // Rimuovi una quantità
+            $orderItem->quantity -= 1;
+            $orderItem->save();
+        }
+
+        // Restituisci una risposta JSON o reindirizza a una pagina appropriata
+        return response()->json(['success' => true]);
+    }
+
+    public function getCarrelloData($orderId) {
+        // Recupera l'ordine dal database utilizzando l'ID
+        $orderUp = OrderItem::find($orderId);
+
+        
+    
+        // Verifica se l'ordine esiste
+        if (!$orderUp) {
+            // Se l'ordine non esiste, restituisci un messaggio di errore o un array vuoto
+            return response()->json(['error' => 'Ordine non trovato'], 404);
+        }
+    
+        // Recupera i dettagli dei prodotti nel carrello dell'ordine
+        $order = $orderUp->items()->with('product')->get();
+    
+        // Calcola il totale del carrello
+        $totalPrice = $order->sum(function($item) {
+            return $item->product->price * $item->quantity;
+        });
+    
+        // Costruisci e restituisci un array JSON con i dati del carrello
+        return response()->json([
+            'order' => $order,
+            'totalPrice' => $totalPrice,
+        ]);
+    }
+    
+
     /**
      * Store a newly created resource in storage.
      */
