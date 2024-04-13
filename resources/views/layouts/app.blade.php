@@ -20,6 +20,8 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- mystyle -->
+    <link rel="stylesheet" href="{{asset('mystyle.css')}}">
 
     <!-- Scripts -->
    @vite(['resources/sass/app.scss', 'resources/js/app.js']) 
@@ -41,6 +43,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item px-5">
+                            <a href="{{route('book.carrello', Auth::id())}}">Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>                           </a>
+                         </li>
+                        @endauth
+
+                       
 
                     </ul>
 

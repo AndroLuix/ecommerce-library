@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->string('address')->nullable(); // Aggiungi la nuova colonna 'image'
+
         });
     }
 
@@ -25,6 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropColumn('address'); // Rollback: rimuovi la colonna 'image'
+
+        });
     }
 };

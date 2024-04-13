@@ -32,7 +32,7 @@
 
         <div class="d-flex justify-content-around">
 
-            <div class="d-flex flex-row flex-wrap gap-3 pb-1">
+            <div class="d-flex flex-row flex-wrap gap-3 pb-1 justify-content-around">
                 @foreach ($books as $book)
                     <div class="card cardbook flex-row shadow">
                         <div>
@@ -40,14 +40,15 @@
                                 height="300px" src="{{ asset($book->image) }}" />
 
                                  <!-- form for book -->
-                            <div class=" m-3 gap-3">
+                            <div class="ms-5 mb-2 gap-3" >
 
-                                <form action="{{ route('admin.book.delete', $book->id) }}" method="POST">
+                                <form action="{{ route('book.add') }}" method="POST" class="">
                                     @csrf
-                                    @method('DELETE')
-                                    <button
-                                        onclick="return confirm('Sicuro di voler eliminare il libro {{ $book->title }}?')"
-                                        type="submit" class="card-link btn btn-outline-primary btn-sm">Aggiungi al Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                                    <input type="number" hidden name="book_id" value="{{$book->id}}">
+                         
+                                    <button type="submit" class="card-link btn btn-outline-primary btn-sm ">
+                                        Aggiungi al Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>
 
                                     </button>
                                 </form>
@@ -70,7 +71,7 @@
 
                                 <p class="card-text">Categoria:
                                     @isset($book->category->name)
-                                        <strong class="propriety-card small">{{ $book->category->name }}</strong>
+                                        <a href="{{route('any.home.namecategory', $book->category->name)}}"> <strong class="propriety-card small">{{ $book->category->name }}</strong></a>
                                     </p>
                                 @endisset
                                 <hr>

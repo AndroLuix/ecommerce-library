@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('card_user_id');
-            $table->string('status')->default('pending');
-
+            $table->unsignedBigInteger('book_id');
+            $table->integer('quantity')->default(1);
+            $table->string('status')->default('In Attesa');
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->foreign('card_user_id')->references('id')->on('cards_user')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 };

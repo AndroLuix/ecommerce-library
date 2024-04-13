@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('order_payments', function (Blueprint $table) {
             $table->id();
         $table->unsignedBigInteger('order_id');
-        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        $table->unsignedBigInteger('card_credit_id')->nullable();
+
         $table->string('payment_method');
         $table->decimal('amount', 10, 2);
-        $table->string('transaction_id')->nullable();
-        // Aggiungi altri campi, se necessario
+        $table->string('transaction_id');
+
         $table->timestamps();
+
+        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        $table->foreign('card_credit_id')->references('id')->on('cretid_cards');
         });
     }
 

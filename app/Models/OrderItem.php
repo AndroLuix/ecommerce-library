@@ -14,5 +14,10 @@ class OrderItem extends Model
         'user_id',
         'book_id',
         'status',
+        'quantity'
     ];
+
+    public function product(){
+       return  $this->belongsTo(Book::class, 'book_id');
+    }
 }

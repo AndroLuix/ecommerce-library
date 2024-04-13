@@ -32,7 +32,7 @@
 
         <div class="d-flex justify-content-around">
 
-            <div class="d-flex flex-row flex-wrap gap-3 pb-1">
+            <div class="d-flex flex-row flex-wrap gap-3 pb-1 justify-content-around">
                 @foreach ($books as $book)
                     <div class="card cardbook flex-row shadow">
                         <div>

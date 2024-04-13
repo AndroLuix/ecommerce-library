@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('order_history', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->unsignedBigInteger('card_id');
             $table->string('status');
             $table->text('notes')->nullable();
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade');
+            $table->foreign('card_id')->references('id')->on('credit_cards')->onUpdate('cascade');
         });
     }
 
