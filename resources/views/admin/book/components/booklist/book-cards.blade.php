@@ -1,10 +1,10 @@
 <div class="card">
-
     <div class="card-header d-flex flex-row justify-content-between">
         <div style="width: 70%" class="d-flex flex-row">
 
-            <input class="form-control" x onkeyup="searchBook()" id="searchBook" type="search" placeholder="Cerca Libro per Nome" aria-label="Search">      
-          
+            <input class="form-control" onkeyup="searchBook()" id="searchBook" type="search"
+                placeholder="Cerca Libro per Nome" aria-label="Search">
+
         </div>
         <div class="d-flex flex-row">
             @if (count($categories) > 0)
@@ -33,13 +33,14 @@
         <div class="d-flex justify-content-around">
 
             <div class="d-flex flex-row flex-wrap gap-3 pb-1 justify-content-around">
+                <!-- inizio lista cards -->
                 @foreach ($books as $book)
                     <div class="card cardbook flex-row shadow">
                         <div>
-                            <img class="card-img-left example-card-img-responsive p-2" style="width: 180px" 
+                            <img class="card-img-left example-card-img-responsive p-2" style="width: 180px"
                                 height="300px" src="{{ asset($book->image) }}" />
 
-                            
+
                         </div>
 
                         <div class="card-body " style="width: 11rem">
@@ -47,8 +48,10 @@
                                 <h6 class="propriety-card card-title">{{ $book->title }}</h6>
                                 <p class="propriety-card card-text small">{{ $book->author }}</p>
 
-                                <p class="card-text">Categoria:
-                                    @isset($book->category->name)
+                                @isset($book->category->name)
+                                    <p class="card-text">Categoria:
+
+
                                         <strong class="propriety-card small">{{ $book->category->name }}</strong>
                                     </p>
                                 @endisset
@@ -69,8 +72,8 @@
                                     </button>
                                 </form>
 
-                                <a href="{{route('admin.book.edit', $book)}}" class="card-link btn btn-outline-primary btn-sm"
-                                    style="margin-left:5px">Modfica</a>
+                                <a href="{{ route('admin.book.edit', $book) }}"
+                                    class="card-link btn btn-outline-primary btn-sm" style="margin-left:5px">Modfica</a>
 
                             </div>
 
@@ -82,6 +85,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     function searchBook() {

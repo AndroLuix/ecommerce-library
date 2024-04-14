@@ -17,10 +17,63 @@
     </style>
     <div class="container-fluid">
 
-        @include('admin.book.col.col')
+        <div class="row ">
+            <!-- colonna sinistra -->
+            <div class="col-md-2">
+
+                <!-- colonna opzioni -->
+                @include('admin.book.components.booklist.opzioni')
+
+                <!-- sommario libri -->
+                @include('admin.book.components.booklist.sommario')
+
+            </div>
+
+            <!-- colonna  princiapale-->
+            <div class="col-md-10 ">
+
+                <!-- gestione errori -->
+                @include('admin.book.components.booklist.message')
+
+
+                <!-- lista libri -->
+
+
+                <div>
+                    <div class="card">
+                        <div class="card-header d-flex flex-row gap-5 ">
+                            Opzioni
+                           
+                                <button class="toggle-view tables btn btn-dark">Tabella</button>
+                                <button class="toggle-view cards btn btn-dark">Cards</button>
+                                
+                        </div>
+                    </div>
+                </div>
+                <div id="list-cards">
+                    @include('admin.book.components.booklist.book-cards')
+                </div>
+                <div id="list-table">
+                    @include('admin.book.components.booklist.book-table')
+                </div>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+                <!-- qui vengono salvate le preferenze tra la visualizzazione della lista dei libri -->
+                <script src="{{asset('js/preference-cards-table.js')}}"> </script>
+
+            </div>
+        </div>
+
+        <script>
+            function toggleList(idDiv) {
+                $(idDiv).slideToggle('slow');
+            }
+        </script>
     </div>
 
-    @include('admin.book.modal')
+    @include('admin.book.components.booklist.modal')
 
     <script>
         function openModal(idElement) {

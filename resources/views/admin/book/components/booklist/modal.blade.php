@@ -68,7 +68,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="bookModalLabel">Inserisci un libro</h5>
+                <h5 class="modal-title" id="bookModalLabel">Inserisci una Nuova Categoria</h5>
 
             </div>
             <form action="{{ route('admin.cateogory.create') }}" method="POST">

@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }} {{Auth::guard('admin')->user()->name}}
+                   Benvenuto {{Auth::guard('admin')->user()->name}}
+
+                   <div>
+                    Visualizza i tuoi libri in vendita
+                   </div>
                 </div>
             </div>
         </div>
