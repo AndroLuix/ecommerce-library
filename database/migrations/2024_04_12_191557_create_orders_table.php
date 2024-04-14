@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
             $table->integer('quantity')->default(1);
-            $table->string('status')->default('In Attesa');
+            $table->string('status')->default('Nel Carrello');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

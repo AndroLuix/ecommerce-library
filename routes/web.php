@@ -54,7 +54,7 @@ Route::get('/home/{categoryBook}',[HomeController::class,'showCateogry'])->name(
 
  //ordini
 Route::post('/add-to-card',[OrderItemController::class,'create'])->name('book.add');
-
+Route::delete('/orders/{orderItem}/delete',[OrderItemController::class,'destroy'])->name('book.destroy');
 // carrello
 Route::get('/carrello/{user}',[OrderItemController::class,'index'])->name('book.carrello');
 Route::post('/carrello/{orderId}/plus',[OrderItemController::class,'plus'])->name('carrello.plus');

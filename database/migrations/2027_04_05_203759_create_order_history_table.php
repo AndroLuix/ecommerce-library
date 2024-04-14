@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('card_id');
-            $table->string('status');
+            $table->string('status')->default('In Spedizione');
             $table->text('notes')->nullable();
             $table->timestamps();
 

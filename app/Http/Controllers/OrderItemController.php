@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Card;
 use App\Models\cardUser;
+use App\Models\OrderDetail;
 use App\Models\OrderItem;
 use App\Models\UserCards;
 use Illuminate\Auth\Middleware\Authenticate;
@@ -20,31 +21,37 @@ class OrderItemController extends Controller
      */
     public function index($userId)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return redirect()->route('home')->withErrors('Bisogna Iscriversi per visualizzare le altre pagine');
         }
 
-       $cart= OrderItem::where('user_id',Auth::id())->get();
-        return view('user.cart.cart',compact('cart'));
+        $cart = OrderItem::where('user_id', Auth::id())->where('status','Nel Carrello')->get();
+        return view('user.cart.cart', compact('cart'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create( Request $request)
+    public function create(Request $request)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return redirect()->route('home')->withErrors('Bisogna Iscriversi per visualizzare le altre pagine');
         }
-    
+
         $data = $request->all();
 
         $data['user_id'] = Auth::id();
 
-       $orderItem =  OrderItem::create($data); 
+        $orderItem =  OrderItem::create($data);
+       // dd($orderItem->product->price);
+        $orderForDetail = [];
+        $orderForDetail['order_id'] = $orderItem->id;
+        $orderForDetail['prodotto_prezzo'] = $orderItem->product->price;        
 
-       
-     return back()->with('success','Ordine dell\'Articolo Aggiunto'); 
+        OrderDetail::create($orderForDetail);
+
+
+        return back()->with('success', 'Ordine dell\'Articolo Aggiunto');
     }
 
     public function plus($orderId)
@@ -76,33 +83,31 @@ class OrderItemController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function getCarrelloData($orderId) {
+    public function getCarrelloData($orderId)
+    {
         // Recupera l'ordine dal database utilizzando l'ID
         $orderUp = OrderItem::find($orderId);
 
-        
-    
         // Verifica se l'ordine esiste
         if (!$orderUp) {
             // Se l'ordine non esiste, restituisci un messaggio di errore o un array vuoto
             return response()->json(['error' => 'Ordine non trovato'], 404);
         }
-    
+
         // Recupera i dettagli dei prodotti nel carrello dell'ordine
-        $order = $orderUp->items()->with('product')->get();
-    
-        // Calcola il totale del carrello
-        $totalPrice = $order->sum(function($item) {
-            return $item->product->price * $item->quantity;
-        });
-    
+        // Recupera il dettaglio del prodotto associato a questo ordine
+        $quantity = $orderUp->quantity;
+
+        // Calcola il totale del carrello per questo ordine
+        $totalPrice = $orderUp->product->price * $orderUp->quantity;
+
         // Costruisci e restituisci un array JSON con i dati del carrello
         return response()->json([
-            'order' => $order,
-            'totalPrice' => $totalPrice,
+            'quantity' => $quantity,
+            'totalPrice' => round($totalPrice,2),
         ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -141,6 +146,7 @@ class OrderItemController extends Controller
      */
     public function destroy(OrderItem $orderItem)
     {
-        //
+        $orderItem->delete();
+        return back();
     }
 }

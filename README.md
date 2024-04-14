@@ -50,9 +50,13 @@ php artisan migrate
 
 ## Popolazione del Database
 
-Per popolare il database inziamo con la tabella delle categorie dei libri: 
+- Per popolare il database inziamo con la tabella delle categorie dei libri: 
  ```
-php artisan db:seed --class=CategoriesTableSeeder
+php artisan db:seed --class=CategoriesSeeder
+ ```
+- Popolazione Tabella Books
+ ```
+php artisan db:seed --class=BookSeeder
  ```
 
 

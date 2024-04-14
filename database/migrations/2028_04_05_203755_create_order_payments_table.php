@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_payments', function (Blueprint $table) {
             $table->id();
-        $table->unsignedBigInteger('order_id');
+        $table->unsignedBigInteger('order_detail_id');
         $table->unsignedBigInteger('card_credit_id')->nullable();
 
         $table->string('payment_method');
@@ -22,8 +22,8 @@ return new class extends Migration
 
         $table->timestamps();
 
-        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-        $table->foreign('card_credit_id')->references('id')->on('cretid_cards');
+        $table->foreign('order_detail_id')->references('id')->on('order_details')->onDelete('cascade');
+        $table->foreign('card_credit_id')->references('id')->on('credit_cards')->onDelete('cascade');
         });
     }
 

@@ -39,25 +39,35 @@
                     {{ $order->status }}
                 </td>
                 <td class="">
-                    <p class="ms-4">Prezzo: {{ $order->product->price }} €</p>
+                    <p class="ms-4">Prezzo: <span class="priceSingleProduc"
+                            id="totalAmount{{ $order->id }}">{{ $order->product->price }}</span> €</p>
 
-                    <p class="ms-2"><i
+                    <p class="ms-2"><i title="Rimuovi 1"
                             onclick="minusCard('{{ $order->id }}', '{{ route('carrello.minus', $order->id) }}')"
-                            class="fa fa-minus mypointer p-1">
+                            class="fa fa-minus mypointer p-1" style="font-size: 30px">
                         </i>
-                        Quantità: {{ $order->quantity }}
-                        <i onclick="plusCard('{{ $order->id }}', '{{ route('carrello.plus', $order->id) }}')"
-                            class="fa fa-plus mypointer p-1">
+
+                        <i title="Aggiungi"
+                            onclick="plusCard('{{ $order->id }}', '{{ route('carrello.plus', $order->id) }}')"
+                            class="fa fa-plus mypointer p-1" style="font-size: 30px">
                         </i>
                     </p>
+
+                    <p class="ms-2"> Quantità: <span
+                            id="quantityItem{{ $order->id }}">{{ $order->quantity }}</span></p>
                 </td>
 
                 <td>
-                    <button type="button"
-                        onclick="return confirm('Sicuro di voler eliminare il prodotto {{ $order->product->title }} ?')"
-                        class="btn btn-link btn-sm btn-rounded">
-                        Elimina
-                    </button>
+                    <form action="{{ route('book.destroy', $order->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="sumbit"
+                            onclick="return confirm('Sicuro di voler eliminare il prodotto {{ $order->product->title }} ?')"
+                            class="btn btn-link btn-sm btn-rounded">
+                            Romuovi
+                        </button>
+                    </form>
                 </td>
             </tr>
             @php
@@ -72,20 +82,22 @@
 </table>
 <div class="text-end py-2 px-3">
 
-    <button class="btn btn-secondary p-3"><i><strong>Totale:</strong></i> {{ $totalPrice }} €</button>
+    <i class="p-3"><i><strong>Totale:</strong></i> <span id="total">{{ $totalPrice }}</span> €</i>
+    <button class="btn btn-primary">Procedi All'Ordine</button>
 </div>
 
 
 <script>
     // Funzione per aggiungere una quantità all'elemento nel carrello
     function plusCard(itemId, url) {
+
         // Esegui la chiamata AJAX per aumentare la quantità dell'elemento nel carrello
         $.ajax({
             url: url,
             method: 'POST',
             headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 itemId: itemId
             },
@@ -106,8 +118,8 @@
             url: url,
             method: 'POST',
             headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 itemId: itemId
             },
@@ -121,20 +133,44 @@
         });
     }
 
-    function loadCartData(itemId) {
-    $.ajax({
-        url: '/carrello/getdata/'+itemId, // Sostituisci con l'URL corretto per ottenere i dati del carrello
-        method: 'GET',
-        success: function(response) {
-            // Aggiorna la tabella del carrello con i dati ottenuti dalla risposta JSON
-            $('#cartTable tbody').html(response.cartItems);
-            // Aggiorna il totale con il valore ottenuto dalla risposta JSON
-            $('#totalAmount').text(response.totalPrice);
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
+    function updateTotalPrice() {
+        // Inizializza la variabile per il totale
+        let totalPrice = 0;
 
+        // Itera su tutti gli elementi con la classe priceSingleProduc
+        $('.priceSingleProduc').each(function() {
+            // Ottieni il valore testuale dell'elemento e convertilo in un numero
+            let price = parseFloat($(this).text());
+
+            // Aggiungi il prezzo corrente al totale
+            totalPrice += price;
+        });
+
+        // Aggiorna il totale nel tuo elemento HTML
+        $('#total').text(totalPrice.toFixed(2));
+    }
+
+    function loadCartData(itemId) {
+        $.ajax({
+            url: '/carrello/getdata/' +
+                itemId, // Sostituisci con l'URL corretto per ottenere i dati del carrello
+            method: 'GET',
+            success: function(response) {
+                // Aggiorna la tabella del carrello con i dati ottenuti dalla risposta JSON
+                //console.log(response.quantity)
+                $('#quantityItem' + itemId).text(response.quantity);
+                // Aggiorna il prezzo  con il valore ottenuto dalla risposta JSON
+                $('#totalAmount' + itemId).text(response.totalPrice);
+
+                // aggiorna il prezzo totale del carrello
+                updateTotalPrice();
+
+
+
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
 </script>
