@@ -17,8 +17,18 @@ Il progetto non è ancora terminato
 - Node
 è necessario avere node, perlomeno la versione 18
 - MySQL 8.3 o MariaDB
-Creare un database 'ecommerce_library' 
 
+Funzione | MySQL / MariaDB | PostgreSQL | SQLite | PHP 8 | Composer | Node.js v.18
+:------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
+substr | ✅ | ❌ | ❌ | ✅ | ✅ | ✅
+
+
+
+### Modificare il file env.example
+- rinominare il file env.example semplicemente togliendo la parte '.example' lasciando solo '.env'
+- Creare un database 'ecommerce_library' 
+
+### Git Clone
 Inizia clonando il progetto:
 - Apri il terminale e vai al progetto
 Apri il progetto con il temrinale e digita
@@ -49,6 +59,7 @@ php artisan migrate
  ```
 
 ## Popolazione del Database
+### crea un database chiamato ecommerce_library
 
 - Per popolare il database inziamo con la tabella delle categorie dei libri: 
  ```

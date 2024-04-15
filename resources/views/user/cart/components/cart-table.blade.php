@@ -40,7 +40,7 @@
                 </td>
                 <td class="">
                     <p class="ms-4">Prezzo: <span class="priceSingleProduc"
-                            id="totalAmount{{ $order->id }}">{{ $order->product->price }}</span> €</p>
+                            id="totalAmount{{ $order->id }}">{{ $order->TotalPrice }}</span> €</p>
 
                     <p class="ms-2"><i title="Rimuovi 1"
                             onclick="minusCard('{{ $order->id }}', '{{ route('carrello.minus', $order->id) }}')"
@@ -80,10 +80,18 @@
 
     </tbody>
 </table>
-<div class="text-end py-2 px-3">
+<div class="text-end py-2 px-5 ">
 
     <i class="p-3"><i><strong>Totale:</strong></i> <span id="total">{{ $totalPrice }}</span> €</i>
-    <button class="btn btn-primary">Procedi All'Ordine</button>
+<form action="{{route('user.payment')}}" method="POST">
+    @csrf
+    @foreach ( $cart as $order)
+    <input type="number" hidden name="TotalPrice[]" value="{{$order->id}}" id="">
+    @endforeach
+    
+    <button type="submit"  class="btn btn-primary">Procedi All'Ordine</button>
+</form>
+  
 </div>
 
 

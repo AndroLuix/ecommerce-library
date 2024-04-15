@@ -40,16 +40,12 @@ class OrderItemController extends Controller
 
         $data = $request->all();
 
+        $book = Book::find($data['book_id']);
         $data['user_id'] = Auth::id();
+        //dd($book);
+        $data['TotalPrice'] = $book->price;
 
-        $orderItem =  OrderItem::create($data);
-       // dd($orderItem->product->price);
-        $orderForDetail = [];
-        $orderForDetail['order_id'] = $orderItem->id;
-        $orderForDetail['prodotto_prezzo'] = $orderItem->product->price;        
-
-        OrderDetail::create($orderForDetail);
-
+        OrderItem::create($data);
 
         return back()->with('success', 'Ordine dell\'Articolo Aggiunto');
     }
@@ -61,8 +57,10 @@ class OrderItemController extends Controller
 
         // Aggiungi una quantità
         $orderItem->quantity += 1;
+        $orderItem->TotalPrice +=$orderItem->product->price;
         $orderItem->save();
 
+      
         // Restituisci una risposta JSON o reindirizza a una pagina appropriata
         return response()->json(['success' => true]);
     }
@@ -76,6 +74,7 @@ class OrderItemController extends Controller
         if ($orderItem->quantity > 1) {
             // Rimuovi una quantità
             $orderItem->quantity -= 1;
+            $orderItem->TotalPrice -=$orderItem->product->price;
             $orderItem->save();
         }
 

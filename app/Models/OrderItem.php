@@ -14,7 +14,8 @@ class OrderItem extends Model
         'user_id',
         'book_id',
         'status',
-        'quantity'
+        'quantity',
+        'TotalPrice'
     ];
 
     public function product(){

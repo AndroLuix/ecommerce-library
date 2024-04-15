@@ -12,18 +12,34 @@
         <ul>
             @php
                 $printedCategories = [];
+                $count = 0;
             @endphp
             @foreach ($books as $book)
+                @php
+
+                    
+                @endphp
                 @if (!in_array($book->category->name, $printedCategories))
-                    <li>
-                        <a href="{{ route('admin.book.show', $book->category->name) }}">
-                            {{ $book->category->name }}
+                    <li class="d-flex justify-content-between py-1">
+                        <a class="" href="{{ route('admin.book.show', $book->category->name) }}">
+                             {{ $book->category->name }}
                         </a>
+
+
+                        <button class="btn btn-light btn-sm" title="Modifica il Nome della categoria"
+                            onclick="editModalForCategory('#categoryEditModal','{{ $book->category->id }}','{{ $book->category->name }}')">
+                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                        </button>
+
                     </li>
                     @php
-                        $printedCategories[] = $book->category->name;
+
                     @endphp
                 @endif
+                @php
+                    $printedCategories[] = $book->category->name;
+
+                @endphp
             @endforeach
         </ul>
 

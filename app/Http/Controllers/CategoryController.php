@@ -56,6 +56,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -77,9 +78,37 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        // Validazione
+    
+
+        $rules = [
+            'name' => 'required|min:2|unique:category_books,name',
+        ];
+    
+        $customMessages = [
+            'required' => "Inserire l' :attribute .",
+            'min' => 'Insrisci un nome più lungo',
+            'unique'=>'Categoria già presente'
+        ];
+
+        $validator =  Validator::make($request->all(),$rules,$customMessages);
+        // Verifica se la validazione fallisce
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+
+        // Se non ci sono errori, si prosegue...
+        $data = $request->all();
+
+       $category = Category::find($data['id']);
+       $category->name = $data['name'];
+       $category->save();
+
+       return redirect()->back()->with('success','Categoria Aggiornata con Successo!');
+
     }
 
     /**

@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('invenotory', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            
             $table->unsignedBigInteger('book_id');
             $table->integer('quantity')->default(1);
-            $table->string('status')->default('Nel Carrello');
-            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books');
+            
+            $table->timestamps();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('invenotory');
     }
 };

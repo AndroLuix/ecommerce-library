@@ -2,12 +2,13 @@
     <div class="card-header d-flex flex-row justify-content-between">
         <div style="width: 70%" class="d-flex flex-row">
             <input class="form-control" onkeyup="searchBookTable()" id="searchBookTable" type="search"
-                placeholder="Cerca Libro per Nome" aria-label="Search">
+                placeholder="Cerca Libro per Titolo" aria-label="Search">
         </div>
         <div class="d-flex flex-row">
             @if (count($categories) > 0)
                 <form action="{{ route('admin.book.category') }}" method="GET">
-                    <select onchange="this.form.submit()" class="form-select select2" name="category_id"
+                    <select onchange="this.form.submit()" class="form-select select2"
+                     name="category_id"
                         aria-label="multiple select example">
                         <option selected disabled>Seleziona Categoria</option>
                         <option value="tutti">Visualizza Tutti</option>

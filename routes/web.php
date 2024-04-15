@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\OrderPaymentController;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Builder\Class_;
@@ -27,7 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-
+// shopping dashboard
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -47,7 +48,7 @@ Route::post('/admin-sign-in',[AdminController::class,'register'])->name('admin.r
  */
 
  // rivista libri
- Route::get('/home/category',[HomeController::class,'show'])->name('any.home.category');
+Route::get('/home/category',[HomeController::class,'show'])->name('any.home.category');
 Route::get('/home/{categoryBook}',[HomeController::class,'showCateogry'])->name('any.home.namecategory');
 
 
@@ -62,8 +63,14 @@ Route::post('/carrello/{orderId}/minus',[OrderItemController::class,'minus'])->n
 Route::get('/carrello/getdata/{idOrder}',[OrderItemController::class,'getCarrelloData'])->name('carrello.data');
 
 
+Route::group(['middleware'=>['auth']], function(){
+    // creazione carta di credito 
+   // Route::post('nuova-carta',[])
+    Route::post('pagamento',[OrderPaymentController::class,'create'])->name('user.payment');
+   
+});
 
-
+   
 
 /**
  * Route for admin

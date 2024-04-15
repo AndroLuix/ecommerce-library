@@ -82,7 +82,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Crea Categoria</button>
+                    <button type="submit" class="btn btn-primary" >Crea Categoria</button>
 
                     <button type="button" class="btn btn-secondary" onclick="closeModal('#cateogryoModal')"
                         data-dismiss="modal">Chiudi</button>
@@ -91,3 +91,57 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Edit category -->
+<div class="modal fade" id="categoryEditModal" tabindex="-1" aria-labelledby="categoryEditLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleForEdit"> </h5>
+
+            </div>
+            <form action="{{ route('admin.cateogory.update') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+
+                    <!-- valore inserito da javascript -->
+                    <input type="number" hidden name="id" >
+
+
+                    <!-- valore che deve inserire l'admin -->
+                    <div class="form-group my-2">
+                        <input required placeholder="Modifica Nome"
+                         type="text" name="name"  
+                            class="form-control" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Modifica Categoria</button>
+
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('#categoryEditModal')"
+                        data-dismiss="modal">Chiudi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(idElement) {
+        $(idElement).modal('show');
+    }
+
+    function closeModal(idElement) {
+        $(idElement).modal('hide')
+    }
+
+    function editModalForCategory(idElement, idCategory, NameCategory) {
+    $(idElement).find('input[name="id"]').val(idCategory);
+    $(idElement).find('#titleForEdit').text('Modifica Categoria ' + NameCategory);
+    $(idElement).find('input[name="name"]').val(NameCategory)
+    $(idElement).modal('show');
+}
+    
+</script>

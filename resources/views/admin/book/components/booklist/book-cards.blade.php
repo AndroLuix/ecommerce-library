@@ -3,7 +3,7 @@
         <div style="width: 70%" class="d-flex flex-row">
 
             <input class="form-control" onkeyup="searchBook()" id="searchBook" type="search"
-                placeholder="Cerca Libro per Nome" aria-label="Search">
+                placeholder="Cerca Libro per Titolo" aria-label="Search">
 
         </div>
         <div class="d-flex flex-row">

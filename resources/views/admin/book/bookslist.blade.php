@@ -43,10 +43,13 @@
                     <div class="card">
                         <div class="card-header d-flex flex-row gap-5 ">
                             Opzioni
-                           
-                                <button class="toggle-view tables btn btn-dark">Tabella</button>
-                                <button class="toggle-view cards btn btn-dark">Cards</button>
-                                
+
+                            <button class="toggle-view tables btn btn-dark">Tabella</button>
+                            <button class="toggle-view cards btn btn-dark">Cards</button>
+                            <a href="{{route('admin.discount')}}" class="btn btn-dark">Sconti
+                                <i class="fa fa-percent" aria-hidden="true"></i>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -61,7 +64,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
                 <!-- qui vengono salvate le preferenze tra la visualizzazione della lista dei libri -->
-                <script src="{{asset('js/preference-cards-table.js')}}"> </script>
+                <script src="{{ asset('js/preference-cards-table.js') }}"></script>
 
             </div>
         </div>
@@ -75,15 +78,7 @@
 
     @include('admin.book.components.booklist.modal')
 
-    <script>
-        function openModal(idElement) {
-            $(idElement).modal('show');
-        }
 
-        function closeModal(idElement) {
-            $(idElement).modal('hide')
-        }
-    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

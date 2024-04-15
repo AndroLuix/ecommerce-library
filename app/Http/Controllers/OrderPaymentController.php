@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CreditCard;
 use App\Models\OrderPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderPaymentController extends Controller
 {
@@ -18,9 +20,19 @@ class OrderPaymentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // se ha la carta
+        if (CreditCard::where('user_id', Auth::id())) :
+            //
+            $data = $request->all();
+            dd($data);
+            foreach ($data as $id) {
+                OrderPayment::create();
+            }
+        else:
+            return redirect()->route('user.newcard')->with('success','Inserisci Metodo di pagamento');
+        endif;
     }
 
     /**
