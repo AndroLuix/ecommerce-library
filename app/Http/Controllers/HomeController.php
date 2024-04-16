@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy('updated_at', 'desc')->get();
+        $books = Book::orderBy('updated_at', 'desc')->paginate(25);
         $categories = Category::all();
         
         return view('home',compact('books','categories'));
@@ -34,25 +34,31 @@ class HomeController extends Controller
     public function show( Request $request)
     {
         
-        $categoryId = $request->all();
+        $categoryId = $request->category_id;
 
-        if($categoryId['category_id'] == 'tutti'){
+        if($categoryId == 'tutti'){
             return redirect()->route('home');
             
         }
+       
         
         $categories = Category::all();
      
-        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $categoryId['category_id'])->get();
-        //dd($books);
-        return view('home', compact('books','categories'));
+        $books = Book::orderBy('updated_at', 'desc')
+        ->where('category_id', $categoryId)
+        ->paginate(25);
+        return view('home', compact('books','categories','categoryId','request'));
     }
 
     public function showCateogry($category_name){
         $categories = Category::all();
+     
         $category_selected = Category::where('name',$category_name)->first();
         
-        $books = Book::orderBy('updated_at','desc')->where('category_id',$category_selected->id)->get();
-        return view('home',compact('books','categories'));
+        $books = Book::orderBy('updated_at','desc')
+        ->where('category_id',$category_selected->id)
+        ->paginate(25);
+
+        return view('home',compact('books','categories','category_name'));
     }
 }

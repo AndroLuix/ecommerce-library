@@ -18,5 +18,9 @@ class Discount extends Model
 
     ];
 
-    protected $hidden = 'id';
+   
+
+    public function books(){
+        $this->hasMany(Book::class);
+    }
 }

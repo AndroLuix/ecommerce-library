@@ -5,14 +5,22 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex flex-row gap-5">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
 
-                        Benvenuto {{ Auth::user()->name }}
+                        <p> Benvenuto {{ Auth::user()->name }}</p>
+
+                        <div>
+                            @isset($request)
+                                {{ $books->appends(['category_id' => $request->category_id])->links() }}
+                            @else
+                                {{ $books->links() }}
+                            @endisset 
+                        </div>
                     </div>
                     @if ($errors->any())
                         <!-- gestione errori -->
@@ -25,6 +33,7 @@
                                 @endforeach
                             </ul>
                         </div>
+
                 </div>
                 @endif
                 <!-- gestione successo -->
@@ -39,6 +48,16 @@
 
                 <div>
                     @include('user.book.cards-book')
+                </div>
+                <div class="card">
+                    @isset($request)
+                        {{ $books->appends(['category_id' => $request->category_id])->links() }}
+                    @else
+                        {{ $books->links() }}
+                    @endisset
+
+
+
                 </div>
             </div>
         </div>

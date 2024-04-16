@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,25 +14,56 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     // funzione che permette di risparmiare tempo 
+     private function loadCommonData()
+     {
+         return [
+             'categories' => Category::all(),
+             'discounts' => Discount::all(),
+         ];
+     }
     public function index()
     {
-        // show dashboard with books with all categoires
-        $categories = Category::all();
-        $books = Book::orderBy('updated_at', 'desc')->get();
-        return view('admin.book.bookslist', compact('books','categories'));
+        $dataModels = $this->loadCommonData();
+
+        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->paginate(50);
+        return view('admin.book.bookslist', $dataModels);
+    }
+
+    public function search(Request $request){
+    
+        $dataModels = $this->loadCommonData();
+        // prendo l'input della barra di ricerca
+        $input = $request->input;
+        $books = Book::where('title',$input)
+        ->orWhere('title','LIKE',"%{$input}%")
+        ->orWhere('price','LIKE',"%{$input}%")
+        ->orWhere('author','LIKE',"%{$input}%")
+        ->orWhere('description','LIKE',"%{$input}%")
+        ->paginate(20);
+
+        if(count($books) == 0){
+            return redirect()->route('admin.book')->with('warning','Nessun contenuto trovato... ');
+        }
+        $dataModels['books'] = $books;
+        return view('admin.book.bookslist', $dataModels);
     }
 
     public function booksCategory(Request $request){
-        
-        $req = $request->all();
+        $categoryId = $request->category_id ;
 
-        if($req['category_id'] == 'tutti'){
+           // prendo tutte le categorie e offerte
+           $categories = Category::all();
+           $discounts = Discount::all();
+
+        if($request->category_id == 'tutti'){
             return redirect()->route('admin.book');
         }
         $categories = Category::all();
-        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $req['category_id'])->get();
+        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $categoryId)->paginate(50);
         //dd($books);
-        return view('admin.book.bookslist', compact('books','categories'));
+        return view('admin.book.bookslist', compact('books','categories','categoryId','request','categories', 'discounts'));
 
     }
     
@@ -84,14 +116,13 @@ class BookController extends Controller
      */
     public function show(Book $book, $categoryName)
     {
+        $dataModels = $this->loadCommonData();
         
-        $categories = Category::all();
-   
         $category = Category::where('name',$categoryName)->first();
      
-        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $category->id)->get();
-        //dd($books);
-        return view('admin.book.bookslist', compact('books','categories'));
+        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->where('category_id', $category->id)->paginate(50);
+       
+        return view('admin.book.bookslist',$dataModels);
 
     }
 
@@ -100,8 +131,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+        $discounts = Discount::all();
         $categories = Category::all();
-    return view('admin.book.editbook', compact('book','categories'));
+    return view('admin.book.editbook', compact('book','categories','discounts'));
     }
 
     /**

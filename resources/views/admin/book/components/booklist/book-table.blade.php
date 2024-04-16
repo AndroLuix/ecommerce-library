@@ -1,26 +1,4 @@
 <div class="card">
-    <div class="card-header d-flex flex-row justify-content-between">
-        <div style="width: 70%" class="d-flex flex-row">
-            <input class="form-control" onkeyup="searchBookTable()" id="searchBookTable" type="search"
-                placeholder="Cerca Libro per Titolo" aria-label="Search">
-        </div>
-        <div class="d-flex flex-row">
-            @if (count($categories) > 0)
-                <form action="{{ route('admin.book.category') }}" method="GET">
-                    <select onchange="this.form.submit()" class="form-select select2"
-                     name="category_id"
-                        aria-label="multiple select example">
-                        <option selected disabled>Seleziona Categoria</option>
-                        <option value="tutti">Visualizza Tutti</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                </form>
-            @endif
-        </div>
-    </div>
-
     <div class="card-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -44,8 +22,8 @@
                 @foreach ($books as $book)
                     <tr class="cardbook">
                         <td>
-                            <img class="card-img-left example-card-img-responsive p-2" style="width: 80px"
-                                height="120px" src="{{ asset($book->image) }}" />
+                            <img class="card-img-left example-card-img-responsive p-2" style="width: 80px" height="120px"
+                                src="{{ asset($book->image) }}" />
                         </td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
@@ -56,16 +34,33 @@
                                 </p>
                             @endisset
                         </td>
-                        <td>{{ $book->price }} €</td>
+                        <td><small>{{ $book->price }}</small> € @isset($book->discount)
+                                @php
+                                    $prezzoFinale = $book->price - $book->price * ($book->discount->percent / 100);
+
+                                    $stato = $book->discount->active ? 'Attivo' : 'Disattivato';
+
+                                @endphp
+                                <hr>
+                                <p class="list-group-item propriety-card small" id="sconto">
+                                    Stato Sconto: {{$stato}} <br>
+                                    @if($stato == 'Attivo')
+                                    Scontato <strong style="color: green">{{ $prezzoFinale }}</strong>€
+                                    @endif
+                                </p>
+                                <hr>
+                            @endisset
+                        </td>
                         <td class="d-flex justify-content-center gap-3">
                             <form action="{{ route('admin.book.delete', $book->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick="return confirm('Sicuro di voler eliminare il libro {{ $book->title }}?')"
+                                <button
+                                    onclick="return confirm('Sicuro di voler eliminare il libro {{ $book->title }}?')"
                                     type="submit" class="card-link btn btn-outline-danger btn-sm">Elimina
                                 </button>
                             </form>
-                            <a href="{{ route('admin.book.edit', $book) }}" 
+                            <a href="{{ route('admin.book.edit', $book) }}"
                                 class="card-link btn btn-outline-primary btn-sm" style="margin-left:5px">Modifica</a>
                         </td>
                     </tr>
@@ -78,7 +73,7 @@
 <script>
     function searchBookTable() {
         var input, filter, rows, row, title, i, txtValue;
-        input = document.getElementById("searchBookTable");
+        input = document.getElementById("searchBook");
         filter = input.value.toUpperCase();
         rows = document.getElementsByTagName("tr"); // Seleziona tutte le righe della tabella
 
@@ -97,4 +92,3 @@
         }
     }
 </script>
-

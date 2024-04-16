@@ -22,7 +22,8 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 
 ## 
 # CLIENTI
-
+## aggiustare home
+link categoria
 ## Creazione pagina inserimento dati Carta di credito
 - pagina con form per i dati
 - tecnologia Encrypt
@@ -43,7 +44,8 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 
 # Implementazioni seedee DB 
 - stressare il software
-1. incrementare il numero di libri generati dal seedee
+1. ✅ incrementare il numero di libri generati dal seedee
+✅ permettere la paginazione sia per ecommerce che gestione libri
 2. incrementare il numero di clienti / utenti 
 3. incrementare il numero delle offerte 
 4. incrementare il numero degli ordini 

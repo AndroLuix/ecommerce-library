@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="form-group my-2">
-                        <input required placeholder="Descrizione" max="50" type="text" name="description"
-                            class="form-control" />
+                        <textarea required name="description"
+                            class="form-control" cols="50" rows="20" placeholder="Inserisci una descrizione..." /></textarea>
                     </div>
 
                     <div class="form-group my-2">
@@ -31,10 +31,13 @@
                         <label class="custom-file-label btn btn-outline-primary" for="img"
                             data-browse="Inserisci immagine di copertina"></label>
                     </div>
+                    <!-- visualizza immagine : premette di visualizzare l'immagine grazie 
+                        a una funzione jquery, non modificare l'id dell'input ne di questo tag img -->
+                    <img id="blah" class="m-2" width="100px" height="200" src="#" alt="Inserisci l'immagine" />
 
 
                     <select class="form-select" name="category_id" placeholder="Seleziona Categroia" required
-                        aria-label="Default select example">
+                        aria-label="Default select example" >
                         <option value="" disabled selected>Seleziona la categoria del libro</option>
 
                         @foreach ($categories as $c)
@@ -42,6 +45,17 @@
                         @endforeach
 
                     </select>
+
+                    
+                    <select class="form-select mt-2 bg-warning" name="discount_id" placeholder="Seleziona Categroia" 
+                        aria-label="Default select example" >
+                        <option value="" disabled selected><i>Seleziona Sconto - opzionale</i></option>
+                        @foreach ($discounts as $d)
+                            <option value="{{ $d->id }}">{{ $d->name }} | <strong style="color: green">{{$d->percent}}%</strong></option>
+                        @endforeach
+
+                    </select>
+
 
                     <div class="form-group my-2">
                         <input required placeholder="Prezzo €" type="currency" min="0.01" step="any"
@@ -144,4 +158,19 @@
     $(idElement).modal('show');
 }
     
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#img").change(function(){
+    readURL(this);
+})
 </script>

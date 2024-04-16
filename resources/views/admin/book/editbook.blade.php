@@ -15,7 +15,7 @@
             content: "Cambia Immagine di copertina";
         }
     </style>
-    <div class="container col-md-8">
+    <div class="container col-md-12">
         <div class="row justify-content-around">
 
 
@@ -57,23 +57,43 @@
 
                     </div>
 
+                    <select class="form-select mt-2 bg-warning" name="discount_id" placeholder="Seleziona Categroia" 
+                        aria-label="Default select example" >
+                        <option value="" disabled selected><i>Seleziona Sconto - opzionale</i></option>
+                        @foreach ($discounts as $d)
+                            <option value="{{ $d->id }}">{{ $d->name }} | <strong style="color: green">{{$d->percent}}%</strong></option>
+                        @endforeach
+
+                    </select>
+
 
 
                     <div class="d-flex flex-row gap-3 justify-content-around my-3">
-                        <img src="{{ asset($book->image) }}">
+                        <img id="oldImg" width="180" height="330" src="{{ asset($book->image) }}">
+                        <img id="blah" style="display: none" class="m-2" src="#"
+                        alt="Inserisci l'immagine" />
                         <small>Descrizione</small>
                         <textarea required name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $book->description }}</textarea>
+                       
                     </div>
 
 
-                    <div style="float: " class="col-md-8 mt-5">
+                    
+
+                    <div  class="col-md-8 mt-5">
                         <div class="form-group my-2">
-                            <input type="file" hidden id="img" name="image" accept="image/*"
-                                class="custom-file-input">
+                            <input type="file" hidden id="img" name="image" accept="image/*" 
+                            class="custom-file-input" onchange="readURL(this); hiddenOldImg('oldImg') ">
+
                             <label class="custom-file-label btn btn-outline-primary" for="img"
                                 data-browse="Inserisci immagine di copertina">
                             </label>
                         </div>
+
+
+
+
+
 
 
                         <small>Categoria</small>
@@ -101,7 +121,7 @@
                     </div>
                 </div>
 
-               
+
 
 
             </form>
@@ -115,15 +135,7 @@
 
 
 
-    <script>
-        function openModal(idElement) {
-            $(idElement).modal('show');
-        }
 
-        function closeModal(idElement) {
-            $(idElement).modal('hide')
-        }
-    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -142,13 +154,33 @@
         });
 
 
-        // live search
-        <
-        script >
-            $(document).ready(function() {
-                $('.select2').select2();
-            });
+
+
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function() {
+            readURL(this);
+        });
+
+
+
+
+        
+        function hiddenOldImg(idElement) {
+           let elementImg = document.getElementById(idElement);
+           $('#blah').show()
+            elementImg.style.display = 'none';
+        }
     </script>
 
-    </script>
 @endsection

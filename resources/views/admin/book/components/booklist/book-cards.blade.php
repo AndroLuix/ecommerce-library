@@ -1,27 +1,4 @@
 <div class="card">
-    <div class="card-header d-flex flex-row justify-content-between">
-        <div style="width: 70%" class="d-flex flex-row">
-
-            <input class="form-control" onkeyup="searchBook()" id="searchBook" type="search"
-                placeholder="Cerca Libro per Titolo" aria-label="Search">
-
-        </div>
-        <div class="d-flex flex-row">
-            @if (count($categories) > 0)
-                <form action="{{ route('admin.book.category') }}" method="GET">
-                    <select onchange="this.form.submit()" class="form-select select2" name="category_id"
-                        aria-label="multiple select example">
-                        <option selected disabled>Seleziona Categoria</option>
-                        <option value="tutti">Visualizza Tutti</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-
-                </form>
-            @endif
-        </div>
-    </div>
 
     <div class="card-body">
         @if (session('status'))
@@ -37,8 +14,8 @@
                 @foreach ($books as $book)
                     <div class="card cardbook flex-row shadow">
                         <div>
-                            <img class="card-img-left example-card-img-responsive p-2" style="width: 180px"
-                                height="300px" src="{{ asset($book->image) }}" />
+                            <img class="card-img-left example-card-img-responsive p-1" style="width: 160px" height="300px"
+                                src="{{ asset($book->image) }}" />
 
 
                         </div>
@@ -55,10 +32,29 @@
                                         <strong class="propriety-card small">{{ $book->category->name }}</strong>
                                     </p>
                                 @endisset
-                                <hr>
+
+                                @isset($book->discount)
+                                    @if ($book->discount->active == true)
+                                        <small> Sconto <i>{{ $book->discount->name }}</i> Attivo</small>
+                                        <p> <strong style="color: green">{{ $book->discount->percent }} %</strong></p>
+                                    @endif
+                                @endisset
+
+
+
+                              
                             </div>
                             <ul class="list-group list-group-flush col-md-10">
                                 <li class="list-group-item propriety-card small">Prezzo {{ $book->price }} €</li>
+                                @isset($book->discount)
+                                    @php
+                                        $prezzoFinale = $book->price - $book->price * ($book->discount->percent / 100);
+                                         
+                                    @endphp
+                                    <li class="list-group-item propriety-card small" id="sconto">Scontato <strong style="color: green">{{$prezzoFinale}}</strong></li>
+                                @endisset
+
+
                             </ul>
                             <!-- form for book -->
                             <div class=" d-flex flex-row justify-content-around mt-3">
