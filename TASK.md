@@ -38,3 +38,18 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 1. mostrare il prezzo non scontato
 2. mostrare la percentuale dello sconto
 3. mostrare prezzo scontato
+
+
+# Implementazioni seedee DB 
+- stressare il software
+1. incrementare il numero di libri generati dal seedee
+2. incrementare il numero di clienti / utenti 
+3. incrementare il numero delle offerte 
+4. incrementare il numero degli ordini 
+
+# implementazione DB e tanto altro
+1. gestione ordini e tempistiche con costi di spedizione
+2. gestione file PDF ed excel degli ordini 
+3 permettere all'utente di inserire un file excel dei libri anziché mettere input manuali. trovare dataset con caratteristiche necessarie.
+4. creazione grafici analisi dei dati.
+
