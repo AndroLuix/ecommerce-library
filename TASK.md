@@ -3,7 +3,8 @@
 - ✅ pulsante per creare una categoria (con controllo se già presente)
 - ✅ Permettere all'admin di poter SOLO modificare la categoria scelta 
 
-
+## magazzino 
+- inserire nel campo di creazione libro la quantità nel magazzino 
 ## CRUD sconti
 - Creare una pagina per inserire Nuovi Sconti
 - Crea possibilità di poter sospendere lo sconto per tutti i libri con quello specifico sconto,  con possibilità di modificare e di eliminare
