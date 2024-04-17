@@ -2,6 +2,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderItemController;
@@ -15,7 +16,7 @@ Route::get('/dashboard', [AdminController::class,'dashboard'])->name('admin.dash
     //sconti 
     Route::get('/sconti',[DiscountController::class,'index'])->name('admin.discount');
     Route::post('/scointi/create',[DiscountController::class,'create'])->name('admin.discount.create');
-    Route::get('/sconti/{discount}/validate',[DiscountController::class,'index'])->name('admin.discount.validate');
+    Route::get('/sconti/{discount}/validate',[DiscountController::class,'validateActivation'])->name('admin.discount.validate');
     Route::delete('sconti/{discount}/delete',[DiscountController::class,'destroy'])->name('admin.discount.delete');
 
     Route::put('/sconti/{discount}/edit',[DiscountController::class,'index'])->name('admin.discount.edit');
@@ -37,3 +38,9 @@ Route::post('books/search',[BookController::class,'search'])->name('admin.book.s
     Route::put('book/update/{book}',[BookController::class,'update'])->name('admin.book.update');
     Route::post('/books/create', [BookController::class,'create'])->name('admin.book.create');
     Route::delete('/book/{book}/delete',[BookController::class,'destroy'])->name('admin.book.delete');
+
+    /**
+     * Clients
+     */
+
+     Route::get('/clienti',[ClientsController::class,'index'])->name('admin.client');

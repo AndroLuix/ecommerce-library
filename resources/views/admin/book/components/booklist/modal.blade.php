@@ -57,9 +57,12 @@
                     </select>
 
 
-                    <div class="form-group my-2">
-                        <input required placeholder="Prezzo €" type="currency" min="0.01" step="any"
+
+                    <div class="form-group my-2 d-flex flex-row gap-2">
+                        <input required placeholder="Prezzo €" style="width: 40%" type="currency" min="0.01" step="any"
                             name="price" class="form-control" />
+                            <input required placeholder="Quantità Magazzino" style="width: 40%"  type="number" min="1" 
+                            name="quantity" class="form-control" />
                     </div>
 
 

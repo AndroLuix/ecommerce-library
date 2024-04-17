@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->integer('quantity')->default(1);
             $table->string('status')->default('Nel Carrello');
+            $table->decimal('TotalPrice', 10, 2)->nullable(); // serve per prendere il prezzo per quantità
+
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

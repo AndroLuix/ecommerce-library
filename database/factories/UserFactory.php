@@ -23,10 +23,21 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        
+        if(rand() % 2 == 0){
+            $gender = 'women';
+            $name = 'female';
+        }else{
+            $gender = 'men';
+            $name = 'male';
+        }
+       
         return [
-            'name' => fake()->name(),
+            'name' => fake()->name($name),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'image' => "https://randomuser.me/api/portraits/".$gender."/".rand(1,100).".jpg",
+            'address'=> fake()->address(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

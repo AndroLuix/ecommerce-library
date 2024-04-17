@@ -27,10 +27,9 @@
 
                                 @isset($book->category->name)
                                     <p class="card-text">Categoria:
-
-
                                         <strong class="propriety-card small">{{ $book->category->name }}</strong>
                                     </p>
+                                    <p><small>Magazzino: {{$book->quantity}}</small> </p>
                                 @endisset
 
                                 @isset($book->discount)
@@ -51,7 +50,9 @@
                                         $prezzoFinale = $book->price - $book->price * ($book->discount->percent / 100);
                                          
                                     @endphp
-                                    <li class="list-group-item propriety-card small" id="sconto">Scontato <strong style="color: green">{{$prezzoFinale}}</strong></li>
+                                    <li class="list-group-item propriety-card small" id="sconto">
+                                        Scontato <strong style="color: green">{{round($prezzoFinale,2)}}</strong>
+                                    </li>
                                 @endisset
 
 
@@ -83,23 +84,5 @@
 </div>
 
 
-<script>
-    function searchBook() {
-        var input, filter, cards, card, title, i, txtValue;
-        input = document.getElementById("searchBook");
-        filter = input.value.toUpperCase();
-        cards = document.getElementsByClassName("cardbook");
 
-        for (i = 0; i < cards.length; i++) {
-            card = cards[i];
-            title = card.querySelector(".propriety-card");
-            txtValue = title.textContent || title.innerText;
 
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
-        }
-    }
-</script>

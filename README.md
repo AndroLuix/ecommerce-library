@@ -59,15 +59,11 @@ php artisan migrate
  ```
 
 ## Popolazione del Database
-### crea un database chiamato ecommerce_library
+- Crea un database chiamato ecommerce_library
 
-- Per popolare il database inziamo con la tabella delle categorie dei libri: 
+- Per popolare il database
  ```
-php artisan db:seed --class=CategoriesSeeder
- ```
-- Popolazione Tabella Books
- ```
-php artisan db:seed --class=BookSeeder
+php artisan db:seed --class=DatabaseSeeder
  ```
 
 

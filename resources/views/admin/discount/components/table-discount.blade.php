@@ -16,7 +16,7 @@
                     <th>Creato Il</th>
                     <th>Aggiornato al</th>
                     <th>Azioni</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
@@ -62,14 +62,14 @@
 
 
 
-                            <label title="Lo stato dell'offerta è {{ $stato }}" class="mx-1"> {{ $stato }}</label>
-                                <button
-                                 title="Attiva o Disattiva offerta" class="btn btn-outline-dark btn-sm ">
-                                    {{ $btn }}
-                                </button>
+                            <label title="Lo stato dell'offerta è {{ $stato }}" class="mx-1">
+                                {{ $stato }}</label>
+                            <a href="{{route('admin.discount.validate', $discount)}}" title="Attiva o Disattiva offerta" class="btn btn-outline-dark btn-sm ">
+                                {{ $btn }}
+                            </a>
 
                         </td>
-                    
+
                     </tr>
                 @endforeach
 

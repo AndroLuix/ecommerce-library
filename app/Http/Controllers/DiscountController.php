@@ -54,8 +54,13 @@ class DiscountController extends Controller
         return redirect()->back()->with('success',"Sconto {$disocunt->name}  Creato");
     }
 
-    public function disableDiscount(Discount $discount){
-        $discount->active = true;
+    public function validateActivation(Discount $discount){
+
+       
+        $discount->active = !$discount->active;
+        $discount->save();
+       
+        return redirect()->back();
 
     }
     public function activeDiscount(Discount $discount){

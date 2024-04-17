@@ -15,10 +15,11 @@ class Book extends Model
       'discount_id',
 
       'title',
-      'description',
-      'price',
       'image',
       'author',
+      'description',
+      'price',
+      'quantity',
    ];
 
    public function category()

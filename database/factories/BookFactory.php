@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Discount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,14 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'price' => $this->faker->randomFloat(2, 0.01, 100),
           'category_id' => Category::all()->random()->id,
+          'discount_id' => (rand(1,100) < 50)? null : Discount::all()->random()->id,
+          'quantity' => rand(1,100),
             'image' => $this->faker->imageUrl(width:250, height: 400),
             'author' => $this->faker->name,
         ];

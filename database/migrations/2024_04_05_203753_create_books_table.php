@@ -14,11 +14,16 @@ return new class extends Migration
         if (!Schema::hasTable('books')) {
             Schema::create('books', function (Blueprint $table) {
                 $table->id();
-                $table->string('title');
-                $table->text('description');
-                $table->decimal('price', 8, 2);
                 $table->unsignedBigInteger('category_id');
                 $table->unsignedBigInteger('discount_id')->nullable();
+
+                $table->string('title');
+                $table->text('description');
+                $table->string('author');
+                $table->decimal('price', 8, 2);
+                $table->integer('quantity');
+                $table->string('image');
+
                 $table->timestamps();
             
                 $table->foreign('category_id')

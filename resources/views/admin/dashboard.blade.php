@@ -21,7 +21,9 @@
 
                             <div class="card" style="width: 15rem;">
                                 <div class="text-center p-5 bg-success ">
+                                    <a href="{{ route('admin.book') }}">
                                     <i class="fa fa-book card-img-top" style="font-size:80px"></i>
+                                </a>
                                 </div>
 
                                 <div class="card-body">
@@ -34,12 +36,14 @@
                             <div class="card" style="width: 15rem;">
 
                                 <div class="text-center p-5  bg-warning">
-                                    <i class="fa fa-users card-img-top" style="font-size:80px"></i>
+                                    <a href="{{ route('admin.client') }}">
+                                        <i class="fa fa-users card-img-top" style="font-size:80px"></i>
+                                    </a>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Clienti</h5>
                                     <p class="card-text">Visualizza i profili dei tuoi clienti</p>
-                                    <a href="#" class="btn btn-primary">Vai alla pagina</a>
+                                    <a href="{{ route('admin.client') }}" class="btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
 
