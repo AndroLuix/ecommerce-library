@@ -29,12 +29,12 @@
 
                 </div>
 
-                <div class="d-flex flex-row">
-                    {{ $clients->links() }}
-                    <div style="width: 80%" class="ms-5 ">
+                <div class="d-flex flex-row flex-wrap">
+                    {{ $clients->onEachSide(-1)->links() }}
+                    <div style="width: 60%" class="ms-5 ">
 
                         <!-- barra di ricerca -->
-                        <form action="{{ route('admin.book.search') }}" class="d-flex flex-row" style="height: 40px" method="POST">
+                        <form action="" class="d-flex flex-row" style="height: 40px" method="POST">
                             @csrf
                             <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
                                 placeholder="cerca per nome, indirrizzo " aria-label="Search">

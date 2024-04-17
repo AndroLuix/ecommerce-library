@@ -10,9 +10,9 @@
             <tr>
                 <th>Profili</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th ></th>
+                <th  ></th>
+                <th ></th>
             </tr>
         </thead>
 
@@ -21,16 +21,15 @@
             @foreach ($clients as $client)
                 <tr class="cardbook">
                     <td>
-                        <img class="card-img-left example-card-img-responsive p-2 rounded shadow" style="width: 80px"
+                        <img class="card-img-left example-card-img-responsive p-2 rounded shadow" style="width: 150px"
                             height="" src="{{ asset($client->image) }}" />
                     </td>
                     <td>
-                       <strong> {{ $client->name }}</strong> <br>
+                        <strong> {{ $client->name }}</strong> <br>
                         Indirizzo: <i>{{ $client->address }}</i>
-                    </td>
-                  
-                    <td></td>
-                    <td>
+                   
+                    
+                        <br>
                         <small>Iscritto il giorno {{ $client->created_at }}</small>
                         <br>
                         <small>Modifiche del profilo dall'utente {{ $client->updated_at }}</small>

@@ -16,15 +16,17 @@
 
 
 
-                        <div class="d-flex flex-row flex-wrap gap-2 justify-content-around">
+                        <div class="d-flex flex-row flex-wrap gap-2 justify-content-around ">
                             <!-- lista opzioni -->
 
                             <div class="card" style="width: 15rem;">
-                                <div class="text-center p-5 bg-success ">
-                                    <a href="{{ route('admin.book') }}">
-                                    <i class="fa fa-book card-img-top" style="font-size:80px"></i>
+                                <a class="" href="{{ route('admin.book') }}">
+                                    <div class="text-center p-5 bg-success ">
+
+                                        <i class="fa fa-book card-img-top text-dark" style="font-size:80px"></i>
+                                    </div>
                                 </a>
-                                </div>
+
 
                                 <div class="card-body">
                                     <h5 class="card-title">I tuoi libri</h5>
@@ -35,11 +37,13 @@
 
                             <div class="card" style="width: 15rem;">
 
-                                <div class="text-center p-5  bg-warning">
-                                    <a href="{{ route('admin.client') }}">
-                                        <i class="fa fa-users card-img-top" style="font-size:80px"></i>
-                                    </a>
-                                </div>
+                                <a href="{{ route('admin.client') }}">
+                                    <div class="text-center p-5  bg-warning">
+
+                                        <i class="fa fa-users card-img-top text-dark" style="font-size:80px"></i>
+
+                                    </div>
+                                </a>
                                 <div class="card-body">
                                     <h5 class="card-title">Clienti</h5>
                                     <p class="card-text">Visualizza i profili dei tuoi clienti</p>
