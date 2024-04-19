@@ -39,12 +39,10 @@
                     <div class="card my-2">
                         <div class="card-header d-flex flex-row gap-5 flex-wrap ">
                            
-                            <a href="{{ route('admin.discount') }}" class="btn btn-dark">
-                                Sconti <i class="fa fa-percent" aria-hidden="true"></i>
+                            <a href="{{route('admin.massive')}}" class="btn btn-dark" >
+                                Applica Sconti <i class="fa fa-percent" aria-hidden="true"></i>
                             </a>
-                            <a href="" class="btn btn-dark">
-                                 In Consegna <i class="fa fa-truck" aria-hidden="true"></i>
-                            </a>
+                           
 
                             <a href="" class="btn btn-dark">
                                 Ordini 
@@ -69,6 +67,8 @@
                                        c0,5.844,4.738,10.585,10.583,10.585h85.88V404.654z"/>
                                </g>
                                </svg>
+
+
                                   
                            </a>
 

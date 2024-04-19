@@ -24,7 +24,7 @@
     <!-- my style -->
     <link rel="stylesheet" href="{{asset('mystyle.css')}}">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js']) 
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -42,7 +42,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav ms-5 me-auto">
+                        <div class="d-flex flex-row gap-5">
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{ route('admin.book') }}">Libri</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{ route('admin.discount') }}">Sconti</a>
+                            </li>
+                        </div>
 
                     </ul>
 
@@ -62,6 +70,7 @@
                                 </li>
                             @endif
                         @else
+                           
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -101,7 +110,9 @@
             @yield('content')
         </main>
     </div>
-   @include('components.footer')
+    @include('components.footer')
 </body>
 
 </html>
+
+<script src="{{asset('js/app.js')}}"></script>

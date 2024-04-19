@@ -13,6 +13,7 @@ class Book extends Model
    protected $fillable = [
       'category_id',
       'discount_id',
+      'group_id',
 
       'title',
       'image',
@@ -29,6 +30,10 @@ class Book extends Model
 
    public function discount(){
       return $this->belongsTo(Discount::class);
+   }
+
+   public function group(){
+      return $this->belongsTo(Group::class);
    }
 
    /*  public function order(){

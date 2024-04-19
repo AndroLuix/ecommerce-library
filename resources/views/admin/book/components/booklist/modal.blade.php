@@ -145,6 +145,8 @@
     </div>
 </div>
 
+
+
 <script>
     function openModal(idElement) {
         $(idElement).modal('show');

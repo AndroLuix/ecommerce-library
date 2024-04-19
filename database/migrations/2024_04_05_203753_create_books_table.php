@@ -31,7 +31,8 @@ return new class extends Migration
                     ->on('category_books')
                     ->onUpdate('cascade')->onUpdate('cascade');
 
-                $table->foreign('discount_id')->references('id')->on('discounts');
+                $table->foreign('discount_id')->references('id')->on('discounts')
+                ->onDelete('set null');
             });
         }
     }

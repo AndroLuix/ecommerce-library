@@ -23,10 +23,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        //Category::factory()->count(20)->create();
-       // Discount::factory()->count(3)->create();
+        
+        Category::factory()->count(20)->create();
+        Discount::factory()->count(3)->create();
 
-        //Book::factory()->count(rand(1000,100000))->create();
+        Book::factory()->count(rand(1000,10000))->create();
         
         User::factory()->count(rand(100,1000))->create();
     }

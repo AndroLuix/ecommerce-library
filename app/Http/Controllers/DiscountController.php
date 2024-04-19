@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +19,8 @@ class DiscountController extends Controller
        $discounts = Discount::all();
         return view('admin.discount.discounts', compact('discounts'));
     }
+
+   
 
     /**
      * Show the form for creating a new resource.
@@ -85,24 +88,29 @@ class DiscountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Discount $discount)
     {
-        //
+    $discounts = Discount::all();;
+        return view('admin.discount.edit-discount',compact('discount','discounts'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Discount $discount)
     {
-        //
+        $discount->update($request->all());
+        return redirect()->back()->with('success',"Offerta {$discount->name} Aggiornata con successo!");
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+        return redirect()->back()->with('success','Sconto Eliminato');
+        
     }
 }

@@ -25,3 +25,20 @@ background-color: blanchedalmond;
     margin-bottom: 10px;
     margin: 10px;
 }
+.bg-dodge{
+    background-color: black;
+    font-size: large;
+    color: white;
+}
+.focus-bg-white:focus{
+background-color: white;
+border: solid 1px black;
+color: black; 
+}
+
+.focus-bg-white:hover{
+    background-color: rgb(36, 127, 207);
+    border: solid 1px black; 
+    color: white; 
+    cursor: pointer; 
+}

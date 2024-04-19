@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Discount extends Model
+class Group extends Model
 {
     use HasFactory;
-
-    protected $table = 'discounts';
+    protected $table = 'group';
 
     protected $fillable = [
         'name',
-        'percent',
-        'active',
-
     ];
 
-   
-
     public function books(){
-       return  $this->hasMany(Book::class,'discount_id');
+        return $this->hasMany(Book::class);
     }
+
 }

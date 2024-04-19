@@ -11,12 +11,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Percentuale</th>
-                    <th>Libri <i style="color: dodgerblue" title="Libri che hanno questo sconto">?</i></th>
-                    <th>Creato Il</th>
-                    <th>Aggiornato al</th>
-                    <th>Azioni</th>
+                    <th></th>
+                 
+                    <th></th>
 
                 </tr>
             </thead>
@@ -25,14 +22,15 @@
 
                 @foreach ($discounts as $discount)
                     <tr class="cardbook">
-                        <td>
-                            {{ $discount->name }}
+                        <td class="m-3" >
+                            {{ $discount->name }}  
+                            <br>
+                            <strong>{{ $discount->percent }} <span class="text-success"> %</span></strong>
+                            <br>
+                            Libri con questo sconto
+                            {{count($discount->books)}}
                         </td>
-                        <td><strong>{{ $discount->percent }} <span class="text-success"> %</span></strong> </td>
-                        <td> {{count($discount->books)}}</td>
-                        <td>{{ $discount->created_at }}</td>
-
-                        <td>{{ $discount->updated_at }} </td>
+              
                         <td class="d-flex justify-content-center gap-3">
                             <form action="{{ route('admin.discount.delete', $discount) }}" method="POST">
                                 @csrf
@@ -64,10 +62,10 @@
 
 
 
-                            <label title="Lo stato dell'offerta è {{ $stato }}" class="mx-1">
-                                {{ $stato }}</label>
-                            <a href="{{route('admin.discount.validate', $discount)}}" title="Attiva o Disattiva offerta" class="btn btn-outline-dark btn-sm ">
-                                {{ $btn }}
+                           
+                            <a href="{{route('admin.discount.validate', $discount)}}"
+                             title="Attiva o Disattiva offerta" class="btn btn-dark btn-sm ">
+                               stato: {{ $stato }} | {{ $btn }} 
                             </a>
 
                         </td>

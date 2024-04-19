@@ -26,14 +26,29 @@
                                         <i class="fa fa-book card-img-top text-dark" style="font-size:80px"></i>
                                     </div>
                                 </a>
-
-
                                 <div class="card-body">
                                     <h5 class="card-title">I tuoi libri</h5>
                                     <p class="card-text">Visualizza i tuoi libri.</p>
                                     <a href="{{ route('admin.book') }}" class="btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
+
+                            <div class="card" style="width: 15rem;">
+                                <a class="" href="{{ route('admin.discount') }}">
+                                    <div class="text-center p-5 bg-info text-dark ">
+
+                                        <i class="fa fa-percent" aria-hidden="true" style="font-size:80px"></i>
+
+                                      
+                                    </div>
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Gestione Offerte</h5>
+                                    <p class="card-text">Gesstisci le tue offerte</p>
+                                    <a href="{{ route('admin.discount') }}" class="btn btn-primary">Vai alla pagina</a>
+                                </div>
+                            </div>
+
 
                             <div class="card" style="width: 15rem;">
 
