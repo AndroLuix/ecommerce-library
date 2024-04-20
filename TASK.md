@@ -11,8 +11,13 @@
 ## CRUD sconti
 - ✅ Modal per inserire Nuovi Sconti
 - ✅ Crea possibilità di poter sospendere lo sconto per tutti i libri con quello specifico sconto
-- [v] possibilità di modificare e di eliminare scont gli sconti
-- [v] possibilità di fare sconti di diversi libri simultaneamente. 
+- [v] possibilità di modificare e di eliminare  gli sconti
+
+## CRUD MASSIVE
+#### [v] possibilità di fare sconti di diversi libri simultaneamente. 
+- [v] implementazione DB aggiungendo group table
+- [v] CRUD del 'massive'
+- [x] poter aggiungere altri libri nel singolo 'massive'
 
 - Pagina con possibilità poter vedere una lista di libri con specifici sconti
 Possibilità di vedere una tabella con tutti i prodotti scontati e non.

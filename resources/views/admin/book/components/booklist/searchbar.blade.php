@@ -7,7 +7,6 @@
             <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
                 placeholder="Cerca Libro per Titolo" aria-label="Search">
             <button type="submit" class="btn btn-dark">Ricerca Globale</button>
-
         </form>
 
 
@@ -42,7 +41,6 @@
 
         <button class="toggle-view tables btn btn-dark">Tabella</button>
         <button class="toggle-view cards btn btn-dark">Cards</button>
-
 
     </div>
 </div>

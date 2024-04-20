@@ -31,6 +31,10 @@ Route::delete('sconti/{discount}/delete', [DiscountController::class, 'destroy']
 
 Route::get('/massive', [MassiveController::class, 'index'])->name('admin.massive');
 Route::post('/massive/create', [MassiveController::class, 'create'])->name('admin.massive.create');
+Route::get('/massive/{massId}/edit',[MassiveController::class,'edit'])->name('admin.massive.edit');
+Route::put('/massive/update/{massive}',[MassiveController::class,'update'])->name('admin.massive.update');
+
+Route::put('/massive/{massId}/discount/update',[MassiveController::class,'updateDiscount'])->name('admin.massive.discount.update');
 
 /**
  * Categorie

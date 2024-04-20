@@ -23,4 +23,12 @@
         {{ session('warning') }}<strong>!</strong>
     </div>
 @endif
+
+@if (session('primary'))
+<div class="alert alert-primary">
+    <strong>Info</strong>
+    {{ session('primary') }}
+</div>
+@endif
+
 </div>

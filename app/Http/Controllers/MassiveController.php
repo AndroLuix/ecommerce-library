@@ -55,4 +55,37 @@ class MassiveController extends Controller
         return redirect()->back()->with('success',"Massive {$massive->name} Creato!");
 
      }
+
+    /*  public function show($massive){
+       // return view('admin.massive.show');
+     } */
+
+     public function edit($massive_id){
+        $massive = Group::findOrFail($massive_id);
+        $discounts = Discount::all();
+        $books = Book::orderBy('created_at', 'desc')->paginate(100);
+
+        return view('admin.massive.edit-massive',compact('massive','discounts','books'));
+     }
+
+     public function update(Request $request, Group $massive){
+        dd(request()->all());
+        return redirect()->back()->with('success',"Massive {$massive->name} Aggiornato con Successo!");
+     }
+
+     public function updateDiscount(Request $request,$massive_id){
+
+       $massive =  Group::firstWhere('id',$massive_id);
+       
+       
+        foreach($massive->books as $book){
+            if($book->discount_id == $request->discount_id){
+                return redirect()->back()->with('primary','Promozione già presente per il massive scelto, nessuna modifica svolta.');
+            }
+          $book->discount_id  = $request->discount_id;
+          $book->save();
+        }
+      
+        return redirect()->back()->with('success',"Sconto Massive per il gruppo {$massive->name} modificato con successo!");
+     }
 }
