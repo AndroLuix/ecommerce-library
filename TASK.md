@@ -5,7 +5,8 @@
 
 # LIBRI
 ## magazzino 
-- inserire nel campo di creazione libro la quantità nel magazzino 
+- ✅ inserire nel campo di creazione libro la quantità nel magazzino
+- per il metodo delete, elimina il file  nello storage e public 
 
 # SCONTI 
 ## CRUD sconti
