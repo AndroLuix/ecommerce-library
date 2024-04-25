@@ -20,6 +20,10 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- sweet alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
     <!-- mystyle -->
     <link rel="stylesheet" href="{{asset('mystyle.css')}}">
 

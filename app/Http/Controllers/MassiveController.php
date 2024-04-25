@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Discount;
 use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class MassiveController extends Controller
@@ -88,4 +89,43 @@ class MassiveController extends Controller
       
         return redirect()->back()->with('success',"Sconto Massive per il gruppo {$massive->name} modificato con successo!");
      }
+
+     public function dissociateBook(Book $book){
+
+        $group = Group::find($book->group_id);
+
+        //dd($group->books()->count());
+        if($group->books()->count() <= 1){
+            
+            $group->delete();
+            return redirect()->route('admin.massive')->with('success','Massive Eliminato, poiché non conteneva più libri');
+        }
+     
+        $book->group_id = null;
+        $book->save();
+        
+      
+
+        return redirect()->back()->with('success',"Libro {$book->title} dissociato");
+     }
+
+     public function addBook(Request $request)
+     {
+         $bookId = $request->input('book_id');
+         $massiveId = $request->massive_id;
+         $book = Book::find($bookId);
+         $massive = Group::find($massiveId);
+        
+     
+         if ($book ) {
+            $book->group_id = $massive->id;
+            $book->discount_id = $massive->books()->first()->discount_id;
+            $book->save();
+             return response()->json(['success' => true, 'message' => "Libro Aggiunto: {$book->title}"]); 
+            
+         } else {
+             return response()->json(['success' => false, 'message' => 'Libro non trovato']);
+         }
+     }
+     
 }

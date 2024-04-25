@@ -52,7 +52,12 @@
 
                             </div>
                             <div class="text-center my-4" style="margin-top: 100%">
-                                <a href="#" class="btn btn-warning">Rimuovi</a>
+                                <form action="{{route('admin.massive.dissociate', $book)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-warning">Rimuovi</button>
+                                </form>
+                               
                             </div>
                         </div>
                     </div>

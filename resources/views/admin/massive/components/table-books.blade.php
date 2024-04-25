@@ -1,6 +1,6 @@
 <div class="card">
 
-    
+
     <form action="">
         <div class="card-body" id="table">
 
@@ -11,6 +11,10 @@
                     {{ session('status') }}
                 </div>
             @endif
+
+            <h2 id="updateSection">
+                
+            </h2>
 
             <table class="table" align="center">
                 <thead>
@@ -40,11 +44,11 @@
                     </tr>
                 </thead>
 
-                {{$books->onEachSide(1)->fragment('table')->links()}}
+                {{ $books->onEachSide(1)->fragment('table')->links() }}
                 <tbody>
                     <!-- inizio lista cards -->
                     @foreach ($books as $book)
-                        <tr class="cardbook">
+                        <tr class="cardbook" id="book-id-{{ $book->id }}">
                             <td>
                                 <img class="card-img-left example-card-img-responsive p-2" style="width: 80px"
                                     height="120px" src="{{ asset($book->image) }}" />
@@ -79,10 +83,9 @@
                             </td>
                             <td>{{ $book->quantity }}</td>
                             <td>
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="flexCheckIndeterminate{{ $book->id }}">
-                                <label class="form-check-label" for="flexCheckIndeterminate{{ $book->id }}">
-                                </label>
+                                <button type="button" class="btn btn-dark" type="checkbox"
+                                    onclick="addBook('#book-id-{{ $book->id }}','{{ $book->id }}','{{ $massive->id }}')"
+                                    id="flexCheckIndeterminate{{ $book->id }}">Aggiungi</button>
 
                             </td>
 
@@ -93,3 +96,28 @@
         </div>
     </form>
 </div>
+
+<script>
+    function addBook(idTr, book, massive) {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: 'POST',
+            url: '/admin/massive/addBook',
+            data: {
+                book_id: book,
+                massive_id: massive,
+                _token: csrfToken
+            },
+            success: function(response) {
+                // Gestisci la risposta
+                $(idTr).hide(1000);
+                $('#updateSection').html(response.message);
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Gestisci gli errori
+                console.error(error);
+            }
+        });
+    }
+</script>
