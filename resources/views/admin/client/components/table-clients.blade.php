@@ -10,9 +10,9 @@
             <tr>
                 <th>Profili</th>
                 <th></th>
-                <th ></th>
-                <th  ></th>
-                <th ></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
 
@@ -26,15 +26,33 @@
                     </td>
                     <td>
                         <strong> {{ $client->name }}</strong> <br>
-                        Indirizzo: <i>{{ $client->address }}</i>
-                   
-                    
+                        @foreach ($client->address as $key => $address)
+                            @if ($key < 1)
+                                <small>Paese: <i>{{ $address->country }}</i></small> <br>
+                                <small>Città: {{ $address->city }} </small>
+                                <p><small>{{ $address->user_address }}</small></p>
+                            @endif
+                        @endforeach
+
+
                         <br>
-                        <small>Iscritto il giorno {{ $client->created_at }}</small>
-                        <br>
-                        <small>Modifiche del profilo dall'utente {{ $client->updated_at }}</small>
-                        <br>
-                        <small>Email verificata {{ $client->email_verified_at }}</small>
+
+                    </td>
+                    <td class="">
+
+
+                        <!-- creare pagina per visualizzare tutti i dettagli-->
+                        <div>
+                            Informazioni: <br>
+
+
+                            <small>Iscritto il giorno {{ $client->created_at }}</small>
+                            <br>
+                            <small>Modifiche del profilo dall'utente {{ $client->updated_at }}</small>
+                            <br>
+                            <small>Email verificata {{ $client->email_verified_at }}</small>
+                        </div>
+
                     </td>
                 </tr>
             @endforeach

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('telephone')->nullable();
             $table->string('mobile')->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });

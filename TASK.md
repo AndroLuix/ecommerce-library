@@ -30,10 +30,13 @@ Pagina per poter selezionare nella stessa pagina pià libri per poter togliere l
 ## Algoritmo per attivare lo sconto al singolo prodotto
 - Modifica Pagina Book per admin:
 ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di scontistica
+## pagina clienti: 
+- ✅ Aggiungere i diversi indirizzi dei clienti
+- aggiungere controller per tasto di ricerca
 
 ## 
 # CLIENTI
-## aggiustare home
+## aggiustare home per i libri che vedrà i clienti
 link categoria
 ## Creazione pagina inserimento dati Carta di credito
 - pagina con form per i dati
@@ -56,7 +59,8 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 # Implementazioni seedee DB 
 - stressare il software
 1. ✅ incrementare il numero di libri generati dal seedee
-✅ permettere la paginazione sia per ecommerce che gestione libri
+ permettere la paginazione sia per ecommerce che gestione libri
+✅ implemntazione DB user con più indirizzi
 2. incrementare il numero di clienti / utenti 
 3. incrementare il numero delle offerte 
 4. incrementare il numero degli ordini 

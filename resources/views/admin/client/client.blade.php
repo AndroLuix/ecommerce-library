@@ -37,7 +37,7 @@
                         <form action="" class="d-flex flex-row" style="height: 40px" method="POST">
                             @csrf
                             <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
-                                placeholder="cerca per nome, indirrizzo " aria-label="Search">
+                                placeholder="cerca per nome o data iscrizione" aria-label="Search">
                             <button type="submit" class="btn btn-dark btn-sm display-6">Cerca Cleinte</button>
                 
                         </form>

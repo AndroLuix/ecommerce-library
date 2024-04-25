@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Address;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Discount;
@@ -30,5 +31,7 @@ class DatabaseSeeder extends Seeder
         Book::factory()->count(rand(1000,10000))->create();
         
         User::factory()->count(rand(100,1000))->create();
+
+        Address::factory()->count(rand(150,1000))->create();
     }
 }
