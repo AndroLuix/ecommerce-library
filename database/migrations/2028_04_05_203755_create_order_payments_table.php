@@ -19,7 +19,7 @@ return new class extends Migration
         $table->boolean('mark')->nullable();
         $table->decimal('amount', 10, 2);
         $table->string('transaction_id');
-
+        $table->boolean('reso')->default(false);
         $table->timestamps();
 
         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
