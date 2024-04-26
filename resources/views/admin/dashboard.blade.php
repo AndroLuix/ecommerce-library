@@ -79,6 +79,21 @@
                                 </div>
                             </div>
 
+                            <!-- review -->
+                             <div class="card" style="width: 15rem;">
+
+                                <div class="text-center p-5 bg-warning">
+                                    <i class="fa fa-comments card-img-top" style="font-size:80px"></i>
+
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Recensioni</h5>
+                                    <p class="card-text">Visualizza le recensioni dei tuoi clienti</p>
+                                    <a href="#" class="btn btn-primary">Vai alla pagina</a>
+                                </div>
+                            </div>
+
                             <div class="card" style="width: 15rem;">
 
                                 <div class="text-center p-5 bg-success">

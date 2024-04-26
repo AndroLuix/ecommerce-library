@@ -48,12 +48,20 @@
                     <div class="d-flex flex-row gap-3 justify-content-around my-3">
 
                         <small>Titolo</small>
-                        <input required placeholder="Titolo" value="{{ $book->title }}" type="text" name="title"
+                        <input required placeholder="Titolo" value="{{ $book->title }}" maxlength="30" type="text" name="title"
                             class="form-control" />
 
                         <small>Autore</small>
-                        <input value="{{ $book->author }}" required placeholder="Autore" max="50" type="text"
+                        <input value="{{ $book->author }}" required placeholder="Autore" maxlength="30" type="text"
                             name="author" class="form-control" />
+
+                            
+                        <small>Quantità in magazzino</small>
+                        <input value="{{ $book->quantity }}" required placeholder="Quantità" 
+                         type="number" 
+                            name="quantity" class="form-control" />
+
+                            
 
                     </div>
 
@@ -61,6 +69,10 @@
                         aria-label="Default select example" >
                         <option value="" disabled selected><i>Seleziona Sconto - opzionale</i></option>
                         @foreach ($discounts as $d)
+                            @if ($d->id == $book->discount_id)
+                            <option value="{{ $d->id }}" selected>{{ $d->name }} | <strong style="color: green">{{$d->percent}}%</strong></option>
+
+                            @endif
                             <option value="{{ $d->id }}">{{ $d->name }} | <strong style="color: green">{{$d->percent}}%</strong></option>
                         @endforeach
 

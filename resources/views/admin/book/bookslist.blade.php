@@ -89,6 +89,9 @@
                 <div id="list-table">
                     @include('admin.book.components.booklist.book-table')
                 </div>
+                <div id="list-new-cards">
+                    @include('admin.book.components.booklist.book-new-cards')
+                </div>
 
                 <!-- paginazione -->
                 <div class="card card-header">

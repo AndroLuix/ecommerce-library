@@ -44,7 +44,7 @@ function searchItems() {
 
     for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
-        var cells = row.querySelectorAll("td:nth-child(2)"); // Seleziona solo il secondo td (indice 1) che contiene il titolo
+        var cells = row.getElementsByTagName("td"); // Selezioniamo tutti i td all'interno della riga
 
         // Mostra o nascondi la riga in base al testo di ricerca
         if (filter) {

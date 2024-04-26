@@ -4,11 +4,21 @@ $(document).ready(function() {
     if (viewSetting === 'table') {
         // Nasconde le cards se l'impostazione salvata è "table"
         $("#list-cards").hide();
+        $("#list-new-cards").hide();
         $("#list-table").show();
     } else if (viewSetting === 'cards') {
         // Nasconde la tabella se l'impostazione salvata è "cards"
         $("#list-table").hide();
+        $("#list-new-cards").hide();
         $("#list-cards").show();
+
+    }else if(viewSetting === 'new-cards'){
+        $("#list-cards").hide();
+        $("#list-table").hide();
+
+        $("#list-new-cards").show();
+
+
     }
 
     // Gestisce il clic sulle opzioni "Tabella" e "Cards"
@@ -16,6 +26,7 @@ $(document).ready(function() {
         // Se l'elemento cliccato è "Tabella"
         if ($(this).hasClass("tables")) {
             $("#list-cards").hide();
+            $("#list-new-cards").hide();
             $("#list-table").show();
             // Salva l'impostazione nell cookie per una settimana
             $.cookie('viewSetting', 'table', { expires: 7, path: '/' });
@@ -23,9 +34,17 @@ $(document).ready(function() {
         // Se l'elemento cliccato è "Cards"
         else if ($(this).hasClass("cards")) {
             $("#list-table").hide();
+            $("#list-new-cards").hide();
             $("#list-cards").show();
             // Salva l'impostazione nell cookie per una settimana
             $.cookie('viewSetting', 'cards', { expires: 7, path: '/' });
+        }
+        else if ($(this).hasClass("new-cards")) {
+            $("#list-table").hide();
+            $("#list-cards").hide();
+            $("#list-new-cards").show();
+            // Salva l'impostazione nell cookie per una settimana
+            $.cookie('viewSetting', 'new-cards', { expires: 7, path: '/' });
         }
     });
 });

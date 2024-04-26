@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             
-            <tbody>
+            <tbody class="">
                 <!-- inizio lista cards -->
                 @foreach ($books as $book)
                     <tr class="cardbook">

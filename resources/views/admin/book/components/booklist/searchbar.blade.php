@@ -41,6 +41,7 @@
 
         <button class="toggle-view tables btn btn-dark">Tabella</button>
         <button class="toggle-view cards btn btn-dark">Cards</button>
+        <button class="toggle-view new-cards btn btn-dark" >New Cards</button>
 
     </div>
 </div>
