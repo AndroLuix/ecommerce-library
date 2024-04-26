@@ -17,37 +17,31 @@
                     @include('components.message')
 
 
-                    <div class="d-flex flex-row flex-wrap gap-2 justify-content-around">
-                        
-
-
-                       
-
-
-                    </div>
+                    <!-- tabella recensioni -->
+                   
 
 
                 </div>
 
                 <div class="d-flex flex-row flex-wrap">
-                    {{ $clients->onEachSide(-1)->links() }}
                     <div style="width: 60%" class="ms-5 ">
 
                         <!-- barra di ricerca -->
-                        <form action="" class="d-flex flex-row" style="height: 40px" method="POST">
+                        <form action="" 
+                        class="d-flex flex-row" style="height: 40px" method="POST">
                             @csrf
-                            <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
-                                placeholder="cerca per nome o data iscrizione" aria-label="Search">
+                            <input class="form-control" name="input" 
+                            onkeyup="searchItems();" id="searchBook" type="search"
+                                placeholder="cerca..." aria-label="Search">
                             <button type="submit" class="btn btn-dark btn-sm display-6">Cerca Cleinte</button>
                 
                         </form>
-                
-                
-                
                     </div>
                 </div>
-                <!-- tabella con sconti -->
-                @include('admin.client.components.table-clients')
+
+                <div class="d-flex flex-row flex-wrap gap-2 justify-content-around">
+                    @include('admin.review.components.table-review')
+                </div>
             </div>
         </div>
     </div>

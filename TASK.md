@@ -8,6 +8,11 @@
 - ✅ inserire nel campo di creazione libro la quantità nel magazzino
 - per il metodo delete, elimina il file  nello storage e public 
 
+### barre di ricerca in sospeso
+#### pagina lista utente
+- controller e action nel form per la ricerca dell'utente
+#### pagina recensioni
+- controller e action nel form per la ricerca dell'della recensione
 # SCONTI 
 ## CRUD sconti
 - ✅ Modal per inserire Nuovi Sconti
@@ -18,12 +23,12 @@
 #### [v] possibilità di fare sconti di diversi libri simultaneamente. 
 - [v] implementazione DB aggiungendo group table
 - [v] CRUD del 'massive'
-- [x] poter aggiungere altri libri nel singolo 'massive'
+- [v] poter aggiungere altri libri nel singolo 'massive'
 
-- Pagina con possibilità poter vedere una lista di libri con specifici sconti
+- [v] Pagina con possibilità poter vedere una lista di libri con specifici sconti:
 Possibilità di vedere una tabella con tutti i prodotti scontati e non.
-- Rimozione sconto:
-Pagina per poter selezionare nella stessa pagina pià libri per poter togliere lo sconto Inserire nel DB NULL nel books discount_id.
+- Rimozione sconto del massive:
+[x]Pagina per poter selezionare nella stessa pagina pià libri per poter togliere lo sconto Inserire nel DB NULL nel books discount_id.
 - Modificare Modal per inserimento nuovo libro:
  con possibilità di inserire lo sconto: non è obbligatorio che l'admin inserisca lo sconto.
 
@@ -61,9 +66,8 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 1. ✅ incrementare il numero di libri generati dal seedee
  permettere la paginazione sia per ecommerce che gestione libri
 ✅ implemntazione DB user con più indirizzi
-2. incrementare il numero di clienti / utenti 
-3. incrementare il numero delle offerte 
-4. incrementare il numero degli ordini 
+2. [v] seeder per tutto
+
 
 # implementazione DB e tanto altro
 1. gestione ordini e tempistiche con costi di spedizione

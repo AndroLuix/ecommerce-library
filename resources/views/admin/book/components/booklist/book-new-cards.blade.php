@@ -10,7 +10,7 @@
         <div class="d-flex flex-wrap gap-2 justify-content-around">
 
             @foreach ($books as $book)
-                <div class="col-2 cardbook propriety-card">
+                <div class=" col-sm-3 col-5 cardbook propriety-card">
                     <div class="card h-100 shadow-sm"> <img src="{{ asset($book->image) }}" height="200px"
                             class="card-img-top object-fit-scale border rounded" alt="...">
                         <div class="card-body ">

@@ -21,4 +21,12 @@ class BookReview extends Model
         
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class,'client_id');
+    }
+
+    public function book(){
+        return $this->belongsTo(Book::class);
+    }
+
 }

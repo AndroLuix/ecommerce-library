@@ -30,18 +30,22 @@
         @endif
     </div>
 
-    <div class="d-flex flex-row gap-5">
+    <div class="d-flex flex-row flex-sm-wrap gap-5">
         <!-- paginazione -->
 
-        @isset($request)
+        <div>
+            @isset($request)
             {{ $books->onEachSide(-1)->appends(['category_id' => $request->category_id])->links() }}
         @else
             {{ $books->onEachSide(-1)->links() }}
         @endisset
+        </div>
+      
 
-        <button class="toggle-view tables btn btn-dark">Tabella</button>
-        <button class="toggle-view cards btn btn-dark">Cards</button>
-        <button class="toggle-view new-cards btn btn-dark" >New Cards</button>
-
+        <div class="flex-sm-wrap ">
+            <button class="toggle-view tables btn btn-dark">Tabella</button>
+            <button class="toggle-view cards btn btn-dark">Cards</button>
+            <button class="toggle-view new-cards btn btn-dark">New Cards</button>
+        </div>
     </div>
 </div>

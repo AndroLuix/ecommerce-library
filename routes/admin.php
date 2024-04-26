@@ -8,6 +8,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MassiveController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\ReviewController;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
 
@@ -65,3 +66,10 @@ Route::delete('/book/{book}/delete', [BookController::class, 'destroy'])->name('
  */
 
 Route::get('/clienti', [ClientsController::class, 'index'])->name('admin.client');
+
+/**
+ * Recensioni
+ */
+Route::get('/recensioni',[ReviewController::class,'AdminIndex'])->name('admin.review');
+Route::delete('/recensioni/{clientID}/{bookID}',[ReviewController::class,'destroy'])
+->name('admin.review.delete');

@@ -23,7 +23,7 @@ class BookReviewFactory extends Factory
             'book_id' => $bookId->id,
             'client_id' => $userId->id,
             'review_text' => $this->faker->text(),
-            'rating' => $this->faker->numberBetween(1, 10),
+            'rating' => $this->faker->numberBetween(1, 5),
             'created_at' => $this->faker->dateTimeBetween('-10 months', 'now'),
         ];
     }
