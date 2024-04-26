@@ -15,13 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->string('number');
-            $table->string('cvv');
+            $table->string('number',16);
+            $table->string('cvv',4);
             $table->date('expiration');
-            $table->boolean('is_favorite')->default(0);
-
-            $table->unique(['user_id', 'is_favorite']);
-
+            $table->dateTime('usate');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             

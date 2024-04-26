@@ -96,7 +96,6 @@ class MassiveController extends Controller
 
         //dd($group->books()->count());
         if($group->books()->count() <= 1){
-            
             $group->delete();
             return redirect()->route('admin.massive')->with('success','Massive Eliminato, poiché non conteneva più libri');
         }
@@ -104,8 +103,6 @@ class MassiveController extends Controller
         $book->group_id = null;
         $book->save();
         
-      
-
         return redirect()->back()->with('success',"Libro {$book->title} dissociato");
      }
 

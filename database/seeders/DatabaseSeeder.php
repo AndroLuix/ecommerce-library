@@ -6,8 +6,13 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\Book;
+use App\Models\BookReview;
 use App\Models\Category;
+use App\Models\CreditCard;
 use App\Models\Discount;
+use App\Models\Group;
+use App\Models\OrderItem;
+use App\Models\OrderPayment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -27,11 +32,18 @@ class DatabaseSeeder extends Seeder
         
         Category::factory()->count(20)->create();
         Discount::factory()->count(3)->create();
+        Group::factory()->count(10)->create();
 
-        Book::factory()->count(rand(1000,10000))->create();
+        Book::factory()->count(rand(100,50))->create();
+        User::factory()->count(rand(10,20))->create();
+
+        Address::factory()->count(rand(10,20))->create();
+        CreditCard::factory()->count(rand(100,200))->create();
+
+        BookReview::factory()->count(rand(10,200))->create();
+
+        OrderItem::factory()->count(100)->create();
         
-        User::factory()->count(rand(100,1000))->create();
-
-        Address::factory()->count(rand(150,1000))->create();
+        OrderPayment::factory()->count(rand(19,20))->create();
     }
 }

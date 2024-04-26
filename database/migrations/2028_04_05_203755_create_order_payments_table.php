@@ -16,7 +16,7 @@ return new class extends Migration
         $table->unsignedBigInteger('order_id');
         $table->unsignedBigInteger('card_credit_id')->nullable();
 
-        $table->string('payment_method');
+        $table->boolean('mark')->nullable();
         $table->decimal('amount', 10, 2);
         $table->string('transaction_id');
 

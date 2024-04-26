@@ -15,6 +15,8 @@ class OrderItem extends Model
         'book_id',
         'status',
         'quantity',
+        'inviato',
+        'returned_order',
         'TotalPrice'
     ];
 

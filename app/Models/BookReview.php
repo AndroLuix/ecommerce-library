@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookReview extends Model
 {
-    use HasFactory;
+    use HasFactory; 
+   // use HasCompositePrimaryKey;
+
+
+   // protected $primaryKey = ['book_id', 'client_id'];
+
     protected $fillable = [
-        'category_id',
-        'title',
-        'description',
-        'price',
-        'image',
-        'author',
+        'book_id',
+        'client_id',
+        'review_text',
+        'rating',
         
     ];
 
