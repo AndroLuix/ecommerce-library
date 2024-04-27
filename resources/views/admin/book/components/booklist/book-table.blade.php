@@ -7,7 +7,7 @@
         @endif
         <div class="table-responsive">
             <table class="table table-striped" align="center">
-                ì
+                
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)" style="min-width: 150px;">Immagine

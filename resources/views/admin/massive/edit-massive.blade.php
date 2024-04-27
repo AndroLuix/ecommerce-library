@@ -22,10 +22,10 @@
                     <!-- Aggiungi qui il tuo form per inserire un libro -->
 
                     <div class="modal-body con-md-8">
-                        @include('admin.massive.components.single-list-massive')
+                        @include('admin.massive.components.edit.single-list-massive')
                     </div>
                     <div>
-                        @include('admin.massive.components.table-books')
+                        @include('admin.massive.components.edit.table-books')
 
                     </div>
                    

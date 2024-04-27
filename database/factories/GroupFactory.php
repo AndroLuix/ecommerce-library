@@ -17,7 +17,7 @@ class GroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->userName(),
+            'name' => $this->faker->colorName(),
         ];
     }
 }

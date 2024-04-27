@@ -10,8 +10,8 @@
             <table class="table table-striped" align="center">
                 <thead>
                     <tr>
-                        <th colspan="2"  onclick="sortTable(0)">Libro - titolo
-                            <i class="fa fa-sort" aria-hidden="true"></i>
+                        <th  onclick="sortTable(0)">Libro - titolo
+                          
                         </th>
                        
                         <th style="min-width: 200px;">
@@ -22,8 +22,8 @@
                         </th>
                         <th style="min-width: 200px;">
                         </th>
-                        <th onclick="sortTable(5)">
-                            <i class="fa fa-sort" aria-hidden="true"></i>
+                        <th >
+                            
                         </th>
 
                     </tr>
@@ -91,34 +91,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function sortTable(columnIndex) {
-
-        var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.querySelector(".table");
-        switching = true;
-
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-
-                x = rows[i].getElementsByTagName("td")[columnIndex];
-                y = rows[i + 1].getElementsByTagName("td")[columnIndex];
-
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            }
-        }
-    }
-</script>

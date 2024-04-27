@@ -18,10 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             
             $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('address_id');
             $table->integer('quantity')->default(1);
-            $table->boolean('inviato')->default(0);
+            $table->boolean('nel_carrello')->nullabel()->default(0); 
+            // se è null significa che è stato spedito
+            // se è true deve verificare l'admin per esegurie la spedizione
             $table->decimal('TotalPrice', 10, 2)->nullable(); // serve per prendere il prezzo per quantità
-            $table->boolean('returned_order')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

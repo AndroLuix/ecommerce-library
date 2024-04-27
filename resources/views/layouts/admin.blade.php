@@ -43,13 +43,24 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ms-5 me-auto">
-                        <div class="d-flex flex-row gap-5">
+                    <ul class="navbar-nav ms-5 me-auto ">
+                        <div class="d-flex flex-row  gap-4 ">
                             <li>
                                 <a class="btn btn-outline-dark" href="{{ route('admin.book') }}">Libri</a>
                             </li>
                             <li>
                                 <a class="btn btn-outline-dark" href="{{ route('admin.discount') }}">Sconti</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{ route('admin.massive') }}">Massive</a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{ route('admin.review') }}">Recensioni</a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{ route('admin.order') }}">Ordini</a>
                             </li>
                         </div>
 

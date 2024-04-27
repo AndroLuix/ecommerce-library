@@ -17,8 +17,10 @@ class BookReviewFactory extends Factory
     {
         $bookId = Book::factory()->create();
         $userId = User::factory()->create();
-
         
+
+        dump($userId->id);
+        dump($bookId->id);
         return [
             'book_id' => $bookId->id,
             'client_id' => $userId->id,

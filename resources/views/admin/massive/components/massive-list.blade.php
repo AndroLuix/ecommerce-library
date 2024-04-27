@@ -16,6 +16,8 @@
                             @endif
                             <option value="{{ $discount->id }}">{{ $discount->name }}</option>
                         @endforeach
+                        <option value="null">Deseleziona | Rimuovi sconto ai libri </option>
+
                     </select>
                     <button id="cambia-id-{{ $mass->id }}" type="submit" class="btn btn-link col-xs-4 col-sm-4"
                         style="display: none">Cambai</button>
@@ -29,40 +31,42 @@
 
         <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
             <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                <?php $discountExist = false; ?>
                 @foreach ($mass->books as $book)
                     <div class="col">
                         <div class="card h-100 shadow-sm"> <img src="{{ asset($book->image) }}" height="200px"
                                 class="card-img-top object-fit-scale border rounded" alt="...">
                             <div class="card-body">
-                                <div class="clearfix mb-3"> 
+                                <div class="clearfix mb-3">
 
                                     @isset($book->discount->percent)
                                         <span class="float-start badge rounded-pill bg-primary">
-                                            {{ $book->discount->percent }} % 
+                                            {{ $book->discount->percent }} %
                                         </span>
                                     @endisset
 
                                     <?php
+                                    
                                     if (isset($book->discount->percent)) {
+                                        $discountExist = true;
                                         $discountedPrice = $book->price - $book->price * ($book->discount->percent / 100);
                                     }
                                     ?>
-                                    
+
 
                                     @isset($book->discount_id)
-                                    <span class="float-end price-hp">
-                                       
+                                        <span class="float-end price-hp">
+
                                             <del><span class="text-muted">{{ $book->price }} &euro;</span> </del> <br>
                                             <span style="color: green">{{ round($discountedPrice, 2) }}
                                                 &euro;</span>
-                                            </span>
-                                            @else
-                                            <span style="color: green">{{ $book->price }} &euro;
+                                        </span>
+                                    @else
+                                        <span style="color: green">{{ $book->price }} &euro;
+                                        @endisset
 
-                                    @endisset
-                          
 
-                                 
+
 
 
 
@@ -85,26 +89,29 @@
                 @endforeach
 
                 <!-- aggiungi un nuovo libro -->
-                <div class="col">
-                    <div class="card h-100 shadow-sm text-center align-items-center mb-5">
-                        <i class="card-img-top fa fa-plus" style="font-size: 12em; color: dodgerblue;"></i>
+                @if ($discountExist)
+                    <div class="col">
+                        <div class="card h-100 shadow-sm text-center align-items-center mb-5">
+                            <i class="card-img-top fa fa-plus" style="font-size: 12em; color: dodgerblue;"></i>
 
-                        <div class="card-body">
-                            <div class="clearfix mb-3">
+                            <div class="card-body">
+                                <div class="clearfix mb-3">
 
-                                <h5 class="card-title">Aggiungi un nuovo libro</h5>
+                                    <h5 class="card-title">Aggiungi un nuovo libro</h5>
 
-                            </div>
-                            <div class="text-center my-4" style="margin-top: 100%">
-                                <a href="{{ route('admin.massive.edit', $mass->id) }}"
-                                    class="btn btn-primary">Aggiungi</a>
+                                </div>
+                                <div class="text-center my-4" style="margin-top: 100%">
+                                    <a href="{{ route('admin.massive.edit', $mass->id) }}"
+                                        class="btn btn-primary">Aggiungi</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
             </div>
+        @endif
 
-        </div>
-    </div>
+
+</div>
+</div>
 @endforeach

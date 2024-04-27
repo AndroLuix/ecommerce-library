@@ -15,10 +15,9 @@ return new class extends Migration
         
             $table->unsignedBigInteger('order_id');
           
-            $table->boolean('reso')->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();
-            $table->primary(['order_id','card_id']);
+            $table->primary(['order_id']);
 
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade');
         });

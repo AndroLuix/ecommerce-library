@@ -67,15 +67,16 @@
                             </div>
 
                             <div class="card" style="width: 15rem;">
-
-                                <div class="text-center p-5 bg-info">
-                                    <i class="fa fa-truck card-img-top" style="font-size:80px"></i>
-                                </div>
+                                <a href="{{ route('admin.order') }}">
+                                    <div class="text-center p-5 bg-info">
+                                        <i class="fa fa-truck card-img-top text-dark" style="font-size:80px"></i>
+                                    </div>
+                                </a>
 
                                 <div class="card-body">
                                     <h5 class="card-title">Ordini</h5>
                                     <p class="card-text">Visualizza gli ordini</p>
-                                    <a href="#" class="btn btn-primary">Vai alla pagina</a>
+                                    <a href="{{ route('admin.order') }}" class="btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
 

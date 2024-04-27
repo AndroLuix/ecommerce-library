@@ -77,13 +77,15 @@ class MassiveController extends Controller
      public function updateDiscount(Request $request,$massive_id){
 
        $massive =  Group::firstWhere('id',$massive_id);
-       
-       
+       $discountId = $request->discount_id;
+       if($request->discount_id == 'null'){
+        $discountId = null;
+       }
         foreach($massive->books as $book){
             if($book->discount_id == $request->discount_id){
                 return redirect()->back()->with('primary','Promozione già presente per il massive scelto, nessuna modifica svolta.');
             }
-          $book->discount_id  = $request->discount_id;
+          $book->discount_id  = $discountId;
           $book->save();
         }
       

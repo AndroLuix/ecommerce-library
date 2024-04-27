@@ -49,7 +49,15 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
+    public function favoriteAdress(){
+        return $this->hasOne(Address::class,'favorite_address_id');
+    }
+
     public function reviews(){
         return $this->hasMany(BookReview::class);
+    }
+
+    public function orders(){
+        return $this->hasMany(OrderItem::class);
     }
 }

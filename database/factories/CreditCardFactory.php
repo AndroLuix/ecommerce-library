@@ -18,6 +18,7 @@ class CreditCardFactory extends Factory
     public function definition(): array
     {
         $user =  User::all()->random();
+        dump($user->id);
         return [
             
             'user_id' => $user->id,

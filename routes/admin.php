@@ -7,6 +7,8 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MassiveController;
+use App\Http\Controllers\OrderAdmin;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ReviewController;
 use App\Models\OrderItem;
@@ -73,3 +75,12 @@ Route::get('/clienti', [ClientsController::class, 'index'])->name('admin.client'
 Route::get('/recensioni',[ReviewController::class,'AdminIndex'])->name('admin.review');
 Route::delete('/recensioni/{clientID}/{bookID}',[ReviewController::class,'destroy'])
 ->name('admin.review.delete');
+Route::post('/cerca-recensione',[ReviewController::class,'search'])->name('admin.review.search');
+
+/**
+ * Ordini
+ */
+
+ Route::get('/ordini',[OrderAdminController::class,'index'])->name('admin.order');
+
+

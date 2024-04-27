@@ -36,6 +36,10 @@ class Book extends Model
       return $this->belongsTo(Group::class);
    }
 
+   public function order(){
+      return $this->hasMany(OrderItem::class);
+   }
+
    /*  public function order(){
       return   $this->belongsTo()
     }

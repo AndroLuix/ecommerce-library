@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,15 +19,20 @@ class OrderItemFactory extends Factory
      */
     public function definition(): array
     {
-        $book = User::all()->random();
+        $book = Book::all()->random();
+        $user = User::all()->random();
+        $address = Address::all()->random();
         $quantity = rand(1,2);
         $total = $book->price * $quantity;
+
+        dump($book->id); dump($user->id);
+
         return [
-            'user_id' => User::all()->random()->id,
+            'user_id' => $user->id,
             'book_id' => $book->id,
-            'inviato' => true,
+            'address_id' => $address->id,
+            'nel_carrello' => (rand(1,10) % 2 == 0)? 0 : 1, 
             'quantity' =>  $quantity,
-            'returned_order' => (rand(1,10) % 2 == 0)? 0 : 1,
             'totalPrice' => $total,
 
         ];

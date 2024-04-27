@@ -28,9 +28,9 @@
 - [v] Pagina con possibilità poter vedere una lista di libri con specifici sconti:
 Possibilità di vedere una tabella con tutti i prodotti scontati e non.
 - Rimozione sconto del massive:
-[x]Pagina per poter selezionare nella stessa pagina pià libri per poter togliere lo sconto Inserire nel DB NULL nel books discount_id.
-- Modificare Modal per inserimento nuovo libro:
- con possibilità di inserire lo sconto: non è obbligatorio che l'admin inserisca lo sconto.
+[v] aggiungere opzione per levare gli sconti
+- [v] Modificare Modal per inserimento nuovo libro:
+ 
 
 ## Algoritmo per attivare lo sconto al singolo prodotto
 - Modifica Pagina Book per admin:
@@ -39,7 +39,11 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 - ✅ Aggiungere i diversi indirizzi dei clienti
 - aggiungere controller per tasto di ricerca
 
-## 
+## CRUD Ordini
+- pagina ordini
+- logica per confermare ordine
+- logica per conferma reso
+
 # CLIENTI
 ## aggiustare home per i libri che vedrà i clienti
 link categoria

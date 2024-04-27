@@ -15,12 +15,18 @@ class OrderItem extends Model
         'book_id',
         'status',
         'quantity',
-        'inviato',
-        'returned_order',
+        'nel_carrello',
         'TotalPrice'
     ];
 
     public function product(){
        return  $this->belongsTo(Book::class, 'book_id');
+    }
+
+    public function user(){
+        return $this->belongsTo((User::class),'user_id');
+    }
+    public function address(){
+        return $this->belongsTo(Address::class,'address_id');
     }
 }
