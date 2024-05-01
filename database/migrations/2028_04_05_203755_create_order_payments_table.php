@@ -19,7 +19,6 @@ return new class extends Migration
         $table->boolean('mark')->nullable();
         $table->decimal('amount', 10, 2);
         $table->string('transaction_id');
-        $table->boolean('reso')->default(false);
         $table->boolean('confirmed')->default(false);
         $table->timestamps();
 

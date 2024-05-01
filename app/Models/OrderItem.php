@@ -29,4 +29,24 @@ class OrderItem extends Model
     public function address(){
         return $this->belongsTo(Address::class,'address_id');
     }
+
+    public function payment(){
+        return $this->hasOne(OrderPayment::class,'order_id');
+    }
+
+    public function paymentNotSend(){
+        return $this->hasOne(OrderPayment::class,'order_id')
+        ->where('confirmed', 1);
+    }
+    public function paymentSend(){
+        return $this->hasOne(OrderPayment::class,'order_id')
+        ->where('confirmed', 0);
+    }
+
+    public function reso(){
+        return $this->hasOne(OrderPayment::class,'order_id')->with('orderReturn');
+    }
+
+
+   
 }

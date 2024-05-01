@@ -20,7 +20,6 @@ class MassiveController extends Controller
 
         $massive = Group::orderBy('updated_at','desc')->get();
 
- 
         return view('admin.massive.massive',compact('books','discounts','massive'));
  
      }

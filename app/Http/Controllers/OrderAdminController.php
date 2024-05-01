@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderItem;
+use App\Models\OrderPayment;
+use Faker\Provider\ar_EG\Payment;
 use Illuminate\Http\Request;
 
 class OrderAdminController extends Controller
@@ -10,11 +12,32 @@ class OrderAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $orders = OrderItem::where('nel_carrello',false)->orderBy('created_at','desc')->paginate(20);
+      
+
+        $result = $request->type;
+        $orders = match ($result) {
+            null => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
+            'spediti' => OrderItem::has('paymentNotSend')
+            ->orderBy('orders.user_id','desc')->paginate(20),
+
+            'nonspediti' =>  OrderItem::has('paymentSend')
+            ->orderBy('orders.user_id','desc')->paginate(20),
+
+            'tutti' => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
+        };
+        
         return view('admin.order.order',compact('orders'));
+
+
+    }
+
+    public function send(OrderItem $order){
+
+        $order->confirmed = true;
+        $order->save();
     }
 
     /**

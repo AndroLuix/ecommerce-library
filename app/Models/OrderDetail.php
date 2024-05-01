@@ -14,10 +14,10 @@ class OrderDetail extends Model
     protected $fillable = 
     [
         'order_id',
-        'prodotto_prezzo'
+        'price'
     ];
 
     public function order(){
-        return $this->belongsTo(OrderItem::class);
+        return $this->belongsTo(OrderItem::class,'order_id');
     }
 }

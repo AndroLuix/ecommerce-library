@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDetailsController;
+use App\Http\Controllers\AdminMailController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientsController;
@@ -80,7 +82,13 @@ Route::post('/cerca-recensione',[ReviewController::class,'search'])->name('admin
 /**
  * Ordini
  */
+Route::controller(OrderAdminController::class)->group( function(){
+    Route::get('/ordini','index')->name('admin.order');
+    Route::get('/order/{order}', 'send')->name('admin.order.send');
+});
 
- Route::get('/ordini',[OrderAdminController::class,'index'])->name('admin.order');
-
+/**
+ * MAIL
+ */
+Route::get('email',[AdminMailController::class,'forOrder'])->name('admin.mail.order');
 

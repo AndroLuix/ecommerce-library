@@ -63,10 +63,6 @@
 
 
                            
-                            <a href="{{route('admin.discount.validate', $discount)}}"
-                             title="Attiva o Disattiva offerta" class="btn btn-dark btn-sm ">
-                               stato: {{ $stato }} | {{ $btn }} 
-                            </a>
 
                         </td>
 

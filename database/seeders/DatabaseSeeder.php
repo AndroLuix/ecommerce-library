@@ -11,8 +11,10 @@ use App\Models\Category;
 use App\Models\CreditCard;
 use App\Models\Discount;
 use App\Models\Group;
+use App\Models\OrderDetail;
 use App\Models\OrderItem;
 use App\Models\OrderPayment;
+use App\Models\OrderReturn;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -38,12 +40,16 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(rand(100,1000))->create();
 
         Address::factory()->count(rand(200,2000))->create();
+
         CreditCard::factory()->count(rand(100,1000))->create();
 
         BookReview::factory()->count(rand(200,500))->create();
 
-        OrderItem::factory()->count(rand(500,5000))->create();
+        OrderItem::factory()->count(rand(500,1000))->create();
+
+        OrderDetail::factory()->count(rand(500,1000))->create();
         
-        OrderPayment::factory()->count(rand(1000,2000))->create();
+        OrderPayment::factory()->count(rand(100,1000))->create();
+        OrderReturn::factory()->count(rand(10,50))->create();
     }
 }

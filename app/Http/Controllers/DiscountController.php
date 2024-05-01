@@ -30,7 +30,7 @@ class DiscountController extends Controller
         //
         // validazione
         $data = request()->all();
-        $data['active'] = true;
+        
         if($data['percent'] <= 0){
             return redirect()->back()->withErrors('Devi Inserire una Percentuale maggiore di 0');
         }

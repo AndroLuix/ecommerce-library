@@ -9,6 +9,7 @@ class OrderPayment extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_payments';
     protected $fillable = [
         'order_id',
         'card_credit_id',
@@ -16,5 +17,12 @@ class OrderPayment extends Model
         'amount',
         'transiction_id'
     ];
+
+    public function order(){
+        return $this->belongsTo(OrderItem::class,'order_id');
+    }
+    public function orderReturn(){
+        return $this->hasOne(OrderReturn::class);
+    }
     
 }

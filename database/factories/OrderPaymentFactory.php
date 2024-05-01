@@ -38,9 +38,9 @@ class OrderPaymentFactory extends Factory
             'order_id' => $order->id,
             'card_credit_id' => $userCardId,
             'mark' => $mark,
-            'reso' =>  (rand(1,10) % 2 == 0)? true : false,
             'amount' => rand(20,500),
             'transaction_id' => Uuid::uuid4()->toString(),
+            'confirmed' => (rand(1,10) % 2 == 0) ? true : false,
         ];
     }
 }

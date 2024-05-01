@@ -46,31 +46,7 @@
                                 class="card-link btn btn-outline-primary btn-sm" style="margin-left:5px">Modifica
                             </a>
                         </td>
-                        <td class="d-flex justify-content-center ">
-                            @php
-                                if ($discount->active == true) {
-                                    $stato = 'Attivo';
-                                    $btn = 'Disattiva';
-                                    //$valueForChange = false;
-                                } else {
-                                    $stato = 'Disattivato';
-                                    $btn = 'Attiva';
-
-                                    //$valueForChange = true;
-                                }
-
-                            @endphp
-
-
-
-
-                            <label title="Lo stato dell'offerta è {{ $stato }}" class="mx-1">
-                                {{ $stato }}</label>
-                            <a href="{{route('admin.discount.validate', $discount)}}" title="Attiva o Disattiva offerta" class="btn btn-outline-dark btn-sm ">
-                                {{ $btn }}
-                            </a>
-
-                        </td>
+                    
 
                     </tr>
                 @endforeach

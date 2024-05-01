@@ -40,8 +40,9 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 - aggiungere controller per tasto di ricerca
 
 ## CRUD Ordini
-- pagina ordini
+- [v] pagina ordini
 - logica per confermare ordine
+-  pagina ordini reso
 - logica per conferma reso
 
 # CLIENTI
