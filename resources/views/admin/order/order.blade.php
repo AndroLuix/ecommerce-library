@@ -22,8 +22,6 @@
                     <div class="d-flex flex-row flex-wrap gap-2 justify-content-around">
                         <!-- lista opzioni -->
                     </div>
-
-
                 </div>
 
                 <div class="d-flex flex-row flex-wrap">
