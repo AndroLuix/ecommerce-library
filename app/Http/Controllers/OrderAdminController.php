@@ -20,6 +20,7 @@ class OrderAdminController extends Controller
         $result = $request->type;
         $orders = match ($result) {
             null => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
+            
             'spediti' => OrderItem::has('paymentNotSend')
             ->orderBy('orders.user_id','desc')->paginate(20),
 
