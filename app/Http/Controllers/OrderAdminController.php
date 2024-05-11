@@ -22,10 +22,10 @@ class OrderAdminController extends Controller
             null => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
             
             'spediti' => OrderItem::has('paymentNotSend')
-            ->orderBy('orders.user_id','desc')->paginate(20),
+            ->orderBy('orders.user_id','desc')->paginate(20)->appends('type',$request->type),
 
             'nonspediti' =>  OrderItem::has('paymentSend')
-            ->orderBy('orders.user_id','desc')->paginate(20),
+            ->orderBy('orders.user_id','desc')->paginate(20)->appends('type',$request->type),
 
             'tutti' => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
         };
