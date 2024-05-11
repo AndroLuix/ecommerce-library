@@ -6,11 +6,7 @@
 
             <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
                 placeholder="Cerca Libro per Titolo" aria-label="Search">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+            
 
             <h2 id="updateSection">
 
@@ -48,10 +44,12 @@
                     <tbody>
                         <!-- inizio lista cards -->
                         @foreach ($books as $book)
+                        @if(!($massive->id == $book->group_id))
                             <tr class="cardbook" id="book-id-{{ $book->id }}">
                                 <td>
                                     <img class="card-img-left example-card-img-responsive p-2" style="width: 80px"
                                         height="120px" src="{{ asset($book->image) }}" />
+                                        
                                 </td>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
@@ -88,10 +86,10 @@
                                     <button type="button" class="btn btn-dark" type="checkbox"
                                         onclick="addBook('#book-id-{{ $book->id }}','{{ $book->id }}','{{ $massive->id }}')"
                                         id="flexCheckIndeterminate{{ $book->id }}">Aggiungi</button>
-
                                 </td>
 
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

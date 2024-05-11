@@ -11,9 +11,7 @@
         <div class="row justify-content-around">
 
 
-           <!-- message -->
-           @includeIf('components.message')
-
+           
 
             <form action="{{ route('admin.massive.update', $massive->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -23,6 +21,9 @@
 
                     <div class="modal-body con-md-8">
                         @include('admin.massive.components.edit.single-list-massive')
+                        <div class="d-grid gap-2 m-5">
+                            <button type="submit" class="btn btn-primary">Modifica Massive</button>
+                        </div>
                     </div>
                     <div>
                         @include('admin.massive.components.edit.table-books')
@@ -30,9 +31,7 @@
                     </div>
                    
                 </div>
-                <div class="d-grid gap-2 m-5">
-                    <button type="submit" class="btn btn-primary">Modifica Massive</button>
-                </div>
+
         </div>
 
 

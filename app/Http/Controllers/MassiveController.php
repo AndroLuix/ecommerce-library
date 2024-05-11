@@ -24,17 +24,20 @@ class MassiveController extends Controller
  
      }
 
+
      public function create(Request $request){
 
         $rules = [
             'name' => 'required|min:5|unique:group,name',
+            'id' => 'required',
         ];
     
         $customMessages = [
-            'required' => "Inserire un nome.",
+            'required' => "Devi inserire un lirbo!",
             'min' => 'Insrisci un nome più lungo',
             'unique'=>'Nome già presente'
         ];
+
 
         $validator =  Validator::make($request->all(),$rules,$customMessages);
         // Verifica se la validazione fallisce
@@ -67,7 +70,7 @@ class MassiveController extends Controller
      }
 
      public function update(Request $request, Group $massive){
-        dd(request()->all());
+      
         return redirect()->back()->with('success',"Massive {$massive->name} Aggiornato con Successo!");
      }
 
@@ -123,5 +126,6 @@ class MassiveController extends Controller
              return response()->json(['success' => false, 'message' => 'Libro non trovato']);
          }
      }
+
      
 }
