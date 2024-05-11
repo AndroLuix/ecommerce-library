@@ -18,6 +18,9 @@ Il progetto non è ancora terminato
 è necessario avere node, perlomeno la versione 18
 - MySQL 8.3 o MariaDB
 
+è necessario avere un account su [text](https://mailtrap.io/) per poter inserire il funzionamento delle mail
+- è necessario modificare il file env secondo le credenziali date da mailtrap.io
+
 Funzione | MySQL / MariaDB | PostgreSQL | SQLite | PHP 8 | Composer | Node.js v.18
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
 substr | ✅ | ❌ | ❌ | ✅ | ✅ | ✅

@@ -47,14 +47,7 @@
                     </select>
 
                     
-                    <select class="form-select mt-2 bg-warning" name="discount_id" placeholder="Seleziona Categroia" 
-                        aria-label="Default select example" >
-                        <option value="" disabled selected><i>Seleziona Sconto - opzionale</i></option>
-                        @foreach ($discounts as $d)
-                            <option value="{{ $d->id }}">{{ $d->name }} | <strong style="color: green">{{$d->percent}}%</strong></option>
-                        @endforeach
-
-                    </select>
+              
 
 
 

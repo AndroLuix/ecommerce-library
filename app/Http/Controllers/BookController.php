@@ -95,9 +95,16 @@ class BookController extends Controller
         // file
         $file = $request->file('image');
         // path
-        $pathGrezza = $file->store('public/covers');
+
+       // Genera un nome univoco per il file
+       $fileName = time() . '_' . $file->getClientOriginalName();
+        
+       // Sposta il file nella directory pubblica
+       $file->move(public_path('images'), $fileName);
+       
+       // Aggiungi il percorso relativo dell'immagine ai dati
+       $data['image'] = 'images/' . $fileName;
         // nome path salvata nel DB
-        $data['image'] = str_replace('public/','', 'storage/'.$pathGrezza);;
         Book::create($data);
         
         return redirect()->back()->with('success','Libro Pubblicato sul tuo sito!');
@@ -166,10 +173,14 @@ class BookController extends Controller
         if(request()->hasFile('image')){
             $file = $request->file('image');
         // path
-        $pathGrezza = $file->store('public/covers');
-        // nome path salvata nel DB
-        $data['image'] = str_replace('public/','', 'storage/'.$pathGrezza);
-
+         // Genera un nome univoco per il file
+         $fileName = time() . '_' . $file->getClientOriginalName();
+        
+         // Sposta il file nella directory pubblica
+         $file->move(public_path('images'), $fileName);
+         
+         // Aggiungi il percorso relativo dell'immagine ai dati
+         $data['image'] = 'images/' . $fileName;
         }else{
             unset($data['image']);
         }

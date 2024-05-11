@@ -19,24 +19,7 @@
         <div class="row justify-content-around">
 
 
-            <!-- gestione errori -->
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Errore!</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            <!-- gestione successo -->
-            @if (session('success'))
-                <div class="alert alert-success">
-                    <strong>Inviato!</strong>
-                    {{ session('success') }}
-                </div>
-            @endif
+           
 
 
             <form action="{{ route('admin.book.update', $book->id) }}" method="POST" enctype="multipart/form-data">

@@ -1,4 +1,10 @@
 <div class="card-body">
+
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <!-- gestione errori -->
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -18,17 +24,17 @@
         </div>
     @endif
     @if (session('warning'))
-    <div class="alert alert-warning">
-        
-        {{ session('warning') }}<strong>!</strong>
-    </div>
-@endif
+        <div class="alert alert-warning">
 
-@if (session('primary'))
-<div class="alert alert-primary">
-    <strong>Info</strong>
-    {{ session('primary') }}
-</div>
-@endif
+            {{ session('warning') }}<strong>!</strong>
+        </div>
+    @endif
+
+    @if (session('primary'))
+        <div class="alert alert-primary">
+            <strong>Info</strong>
+            {{ session('primary') }}
+        </div>
+    @endif
 
 </div>

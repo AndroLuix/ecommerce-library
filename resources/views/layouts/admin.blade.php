@@ -113,7 +113,7 @@
             </div>
         </nav>
 
-
+        @include('components.message')
 
 
 

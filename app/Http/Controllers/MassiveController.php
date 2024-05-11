@@ -44,7 +44,7 @@ class MassiveController extends Controller
  
        
        $massive = Group::create(['name' => $request->name]);
-        //dd($request->id);
+       // dd($request->id);
         foreach($request->id as $id){
             $book = Book::find($id);
             $book->group_id = $massive->id;
@@ -56,9 +56,7 @@ class MassiveController extends Controller
 
      }
 
-    /*  public function show($massive){
-       // return view('admin.massive.show');
-     } */
+ 
 
      public function edit($massive_id){
         $massive = Group::findOrFail($massive_id);

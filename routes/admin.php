@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::any('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+
+
 /**
  * Sconti
  */

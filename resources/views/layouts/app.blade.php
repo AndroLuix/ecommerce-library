@@ -104,7 +104,7 @@
         </nav>
 
 
-
+        @include('components.message')
 
         <main class="py-4">
             @yield('content')

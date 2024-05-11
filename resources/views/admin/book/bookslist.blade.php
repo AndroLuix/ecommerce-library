@@ -33,7 +33,6 @@
             <div class="col-md-10 ">
 
                 <!-- gestione errori -->
-                @include('components.message')
                 <div>
 
                     <div class="card my-2">

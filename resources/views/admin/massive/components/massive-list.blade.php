@@ -11,9 +11,11 @@
                         class="form-select form-select-lg mt-2 bg-warning focus-bg-white col-xs-8 col-sm-8"
                         name="discount_id">
                         @foreach ($discounts as $discount)
+                        @isset($mass->books[0]->discount_id)
                             @if ($mass->books[0]->discount_id == $discount->id)
                                 <option value="{{ $discount->id }}" selected>{{ $discount->name }}</option>
                             @endif
+                            @endisset
                             <option value="{{ $discount->id }}">{{ $discount->name }}</option>
                         @endforeach
                         <option value="null">Deseleziona | Rimuovi sconto ai libri </option>
