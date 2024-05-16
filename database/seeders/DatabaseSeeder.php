@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         
         Category::factory()->count(20)->create();
         Discount::factory()->count(3)->create();
-        Group::factory()->count(10)->create();
+       // Group::factory()->count(10)->create();
 
         Book::factory()->count(rand(50,100))->create();
         User::factory()->count(rand(100,1000))->create();

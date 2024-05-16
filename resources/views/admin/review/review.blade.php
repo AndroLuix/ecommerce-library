@@ -30,15 +30,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <!-- messaggi di errore e di scuccesso -->
-                    @include('components.message')
-
-
                     <!-- tabella recensioni -->
-
-
-
                 </div>
 
 

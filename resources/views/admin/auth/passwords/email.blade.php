@@ -9,7 +9,6 @@
 
                 <div class="card-body">
                    
-                    @include('components.message')
 
                     <form method="POST" action="{{ route('admin.email.sendmail') }}">
                         @csrf

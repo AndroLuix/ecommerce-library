@@ -181,6 +181,7 @@ class AdminController extends Controller
 
         $password =   Hash::make($request->password);
         $admin->password = $password;
+        $admin->remember_token = null;
         $admin->save();
         return redirect()->route('admin.login.attempt')->with('success', 'Ora puoi inserire la tua nuova password!');
     }

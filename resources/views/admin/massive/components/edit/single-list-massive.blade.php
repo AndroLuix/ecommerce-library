@@ -44,12 +44,13 @@
                                 <div class="clearfix mb-3">
                                     <span class="float-start badge rounded-pill bg-primary">
 
-                                        {{ $book->discount->percent }} %</span>
-                                    @php
+                                        @if(isset($ $book->discount->percent))
+                                            {{ $book->discount->percent }} %</span>
+                                            @php
                                         $discountedPrice =
                                             $book->price - $book->price * ($book->discount->percent / 100);
                                     @endphp
-                                    <span class="float-end price-hp">
+                                      <span class="float-end price-hp">
                                         @isset($book->discount_id)
                                             <del><span class="text-muted">{{ $book->price }} &euro;</span> </del> <br>
                                         @endisset
@@ -57,6 +58,12 @@
 
                                         <span style="color: green">{{ round($discountedPrice, 2) }}
                                             &euro;</span></span>
+                                        @endif
+                                        <span style="color: white">{{ $book->price}}
+                                            &euro;</span></span>
+                                        
+                                    
+                                  
                                 </div>
                                 <h5 class="card-title">{{ $book->title }}</h5>
 
