@@ -57,7 +57,7 @@
                                         </div>
                                         <h5 class="review-count">{{ $review->rating }}</h5>
                                     </div>
-                                    <p><strong></strong></p>
+                                    <p><i> {{$review->created_at}}</i></p>
                             </td>
 
                             <td>

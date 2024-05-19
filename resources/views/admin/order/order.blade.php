@@ -25,13 +25,18 @@
                 </div>
 
                 <div class="d-flex flex-row flex-wrap">
+                    @if ($orders->links() !== null)
                     {{ $orders->onEachSide(-1)->links() }}
+                @endif
+                
+                
+                   
                     <div style="width: 60%" class="ms-5 ">
 
                         <!-- barra di ricerca -->
-                        <form action="" class="d-flex flex-row" style="height: 40px" method="POST">
-                            @csrf
-                            <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook"
+                        <form action="" class="d-flex flex-row" style="height: 40px" method="GET">
+                            <input class="form-control" name="input" onkeyup="searchItems();" 
+                            id="searchBook"
                                 type="search" placeholder="cerca ordine..." aria-label="Search">
                             <button type="submit" class="btn btn-dark btn-sm display-6">Cerca Cleinte</button>
 

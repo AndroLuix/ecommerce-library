@@ -26,7 +26,7 @@ class BookFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0.01, 100),
           'category_id' => Category::all()->random()->id,
           'discount_id' => (rand(1,100) < 50)? null : Discount::all()->random()->id,
-          'group_id' => (rand(1,100) > 50)? null : Group::all()->random()->id,
+        //  'group_id' => (rand(1,100) > 50)? null : Group::all()->random()->id,
           'quantity' => rand(1,100),
             'image' => $this->faker->imageUrl(width:250, height: 400),
             'author' => $this->faker->name,

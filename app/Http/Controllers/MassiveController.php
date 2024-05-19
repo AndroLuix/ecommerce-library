@@ -65,12 +65,31 @@ class MassiveController extends Controller
         $massive = Group::findOrFail($massive_id);
         $discounts = Discount::all();
         $books = Book::orderBy('created_at', 'desc')->paginate(100);
-
         return view('admin.massive.edit-massive',compact('massive','discounts','books'));
      }
 
      public function update(Request $request, Group $massive){
-      
+     // dd($request->all());
+     $rules = [
+        'name' => 'required|min:5|unique:group,name',
+        
+    ];
+
+    $customMessages = [
+        'min' => 'Insrisci un nome più lungo',
+        'unique'=>'Nome già presente'
+    ];
+
+
+    $validator =  Validator::make($request->all(),$rules,$customMessages);
+    // Verifica se la validazione fallisce
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator->errors());
+    }
+
+      $massive->name = $request->name ;
+      $massive->books()->update(['discount_id' => $request->discount_id]);
+      $massive->save();
         return redirect()->back()->with('success',"Massive {$massive->name} Aggiornato con Successo!");
      }
 

@@ -15,20 +15,45 @@ class OrderAdminController extends Controller
     public function index(Request $request)
     {
         //
-      
-
         $result = $request->type;
-        $orders = match ($result) {
-            null => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
-            
-            'spediti' => OrderItem::has('paymentNotSend')
-            ->orderBy('orders.user_id','desc')->paginate(20)->appends('type',$request->type),
-
-            'nonspediti' =>  OrderItem::has('paymentSend')
-            ->orderBy('orders.user_id','desc')->paginate(20)->appends('type',$request->type),
-
-            'tutti' => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
-        };
+        $search = $request->input;
+        $queryLike =   '%' . $search . '%';
+        $queryLikeAddress =   '%' . $search . '%';
+    
+        if(isset($search)){
+            $orders = OrderItem::has('payment')
+            ->whereHas('user', function ($query) use ($queryLike) {
+                $query->where('name', 'like', $queryLike)
+                      ->orWhere('email', 'like', $queryLike);
+            })
+            ->whereHas('address', function ($query) use ($queryLikeAddress) {
+                    $query->orWhere('user_address', 'like', $queryLikeAddress)
+                          ->orWhere('city', 'like', $queryLikeAddress)
+                          ->orWhere('postal_code', 'like', $queryLikeAddress)
+                          ->orWhere('country', 'like', $queryLikeAddress)
+                          ->orWhere('telephone', 'like', $queryLikeAddress)
+                          ->orWhere('mobile', 'like', $queryLikeAddress);
+                })
+            ->orderBy('orders.user_id', 'desc')
+            ->paginate(20)
+            ->appends('input', $search);
+        
+        
+        }else{
+            $orders = match ($result) {
+                null => OrderItem::has('payment')->orderBy('orders.user_id','desc')->paginate(20),
+                
+                'spediti' => OrderItem::has('paymentNotSend')
+                ->orderBy('orders.user_id','desc')->paginate(20),
+    
+                'nonspediti' =>  OrderItem::has('paymentSend')
+                ->orderBy('orders.user_id','desc')->paginate(20),
+    
+                'tutti' => OrderItem::has('payment')->orderBy('orders.user_id','desc')
+                ->paginate(20),
+            };
+        }
+        
         
         return view('admin.order.order',compact('orders'));
 

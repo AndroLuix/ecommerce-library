@@ -12,18 +12,20 @@
                     @csrf
                     @method('PUT')
                     <select
-                        class="form-select form-select-lg mt-2 
-                        bg-warning focus-bg-white col-xs-8 col-sm-8"
-                        name="discount_id">
-                        @foreach ($discounts as $discount)
-                            @isset($mass->books[0]->discount_id)
-                                @if ($mass->books[0]->discount_id == $discount->id)
-                                    <option value="{{ $discount->id }}" selected>{{ $discount->name }}</option>
-                                @endif
-                            @endisset
-                            <option value="{{ $discount->id }}">{{ $discount->name }}</option>
-                        @endforeach
-                    </select>
+                    class="form-select form-select-lg mt-2 bg-warning focus-bg-white col-xs-8 col-sm-8"
+                    name="discount_id">
+                    <option value="">Seleziona uno sconto</option>
+                    @foreach ($discounts as $discount)
+                  
+                        <option value="{{ $discount->id }}" 
+                            {{ isset($massive->books[0]->discount_id)
+                             && $massive->books[0]->discount_id == $discount->id ? 'selected' : '' }}>
+                            {{ $discount->name }}
+                        </option>
+                    @endforeach
+                </select>
+                
+                
 
                 </form>
 
@@ -33,7 +35,28 @@
         </div>
 
         <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+         {{--    <!-- paginazione -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+ --}}
+              <!-- libri -->
             <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                
                 @foreach ($massive->books as $book)
                     <!-- grandezza cards -->
                     <div class="col-3 col-md-4 col-lg-3">
@@ -44,7 +67,7 @@
                                 <div class="clearfix mb-3">
                                     <span class="float-start badge rounded-pill bg-primary">
 
-                                        @if(isset($ $book->discount->percent))
+                                        @if(isset($book->discount->percent))
                                             {{ $book->discount->percent }} %</span>
                                             @php
                                         $discountedPrice =
@@ -85,4 +108,3 @@
             </div>
         </div>
 
-        <!-- modal -->

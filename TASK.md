@@ -17,13 +17,14 @@
 ## CRUD sconti
 - ✅ Modal per inserire Nuovi Sconti
 - ✅ Crea possibilità di poter sospendere lo sconto per tutti i libri con quello specifico sconto
-- [v] possibilità di modificare e di eliminare  gli sconti
+- ✅ possibilità di modificare e di eliminare  gli sconti
 
 ## CRUD MASSIVE
-#### [v] possibilità di fare sconti di diversi libri simultaneamente. 
-- [v] implementazione DB aggiungendo group table
-- [v] CRUD del 'massive'
-- [v] poter aggiungere altri libri nel singolo 'massive'
+#### ✅ possibilità di fare sconti di diversi libri simultaneamente. 
+- ✅ implementazione DB aggiungendo group table
+- ✅ CRUD del 'massive'
+- ✅ poter aggiungere altri libri nel singolo 'massive'
+- [x] implementare funzioni js per poter vedere l'aggiunta del libro sulla pagina modifica massive
 
 - [v] Pagina con possibilità poter vedere una lista di libri con specifici sconti:
 Possibilità di vedere una tabella con tutti i prodotti scontati e non.
@@ -42,28 +43,46 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 ## CRUD Ordini
 - [v] pagina ordini
 - logica per confermare ordine
+: ogni volta che l'admin accetta un ordine, verrà inviata tramite mail al cliente e admin i dettagli dell'ordine
+
 -  pagina ordini reso
-- logica per conferma reso
+: il server, una volta che il cliente ha fatto il reso, invierà una mail all'admin e all'user
+
+
+
+## ANALISI DATI
+### visualizza pag. statistiche libri.
+- libri più venduti con grafico
+- zone dove sono iscritti gli utenti con mappa
+- zone dove sono stati effettuati più ordini
+
+
+// molto probabilmente ignorerò la parte clienti per il momento.
 
 # CLIENTI
 ## aggiustare home per i libri che vedrà i clienti
 link categoria
-## Creazione pagina inserimento dati Carta di credito
-- pagina con form per i dati
-- tecnologia Encrypt
-- Permettere la decriptazione
-- l'utente può aggiungere più carte
-
-## Creazione pagina indirizzi Per i Clienti
-- l'utente può aggiungere più indirizzo e numeri di telefono e mobile (nullable quest'utlime)
-- creazione e gestione 
-
-## Algoritmo per attivare lo sconto al singolo prodotto
+- dividere le cards per tipologia di libro e sconti
+- libri più venduti
+- inserire filtro per prezzo, recensione, sconto, tipologia
+### Algoritmo per visualizzare lo sconto del singolo prodotto
 - Modifica Pagina Book per cleinti:
 ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di scontistica.
 1. mostrare il prezzo non scontato
 2. mostrare la percentuale dello sconto
 3. mostrare prezzo scontato
+
+## Creazione pagina inserimento dati Carta di credito
+- pagina con form per i dati
+- tecnologia Encrypt
+- Permettere la decriptazione
+- l'utente può aggiungere più carte
+- modificate tabella per selezionare la carta preferita
+
+## Creazione pagina indirizzi Per i Clienti
+- l'utente può aggiungere più indirizzo e numeri di telefono e mobile (nullable quest'utlime)
+- creazione e gestione 
+- modificare tabella indirizzo per poter inserire l'indirizzo preferito
 
 
 # Implementazioni seedee DB 
