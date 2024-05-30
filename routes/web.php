@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\OrderPaymentController;
-use App\Models\OrderItem;
+
+use App\Http\Controllers\User\HomeController;
+
+
+use App\Http\Controllers\Admin\AdminController;
+
+
+use App\Http\Controllers\User\OrderItemController;
+use App\Http\Controllers\Admin\OrderPaymentController;
+
 use Illuminate\Support\Facades\Route;
 use PhpParser\Builder\Class_;
 
@@ -23,7 +26,7 @@ use PhpParser\Builder\Class_;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -32,7 +35,7 @@ Auth::routes();
 
 
 // shopping dashboard
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
@@ -66,10 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 /**
- * Route for admin
+ * ROUTE FOR ADMIN
  */
-
-
  /**
  * Route for guest (admin)
  */

@@ -92,6 +92,9 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 ✅ implemntazione DB user con più indirizzi
 2. [v] seeder per tutto
 
+# Mail revisione
+Dopo aver completato la navigazione guest, inserisci nella mail sia di eliminaziome ordine che invio ordine il link dell'articolo.
+
 
 # implementazione DB e tanto altro
 1. gestione ordini e tempistiche con costi di spedizione

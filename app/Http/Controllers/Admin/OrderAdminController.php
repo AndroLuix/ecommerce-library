@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Mail\MailBackOrder;
+use App\Mail\MailSendOrder;
 use App\Models\OrderItem;
 use App\Models\OrderPayment;
 use Faker\Provider\ar_EG\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderAdminController extends Controller
 {
@@ -62,8 +66,24 @@ class OrderAdminController extends Controller
 
     public function send(OrderItem $order){
 
-        $order->confirmed = true;
-        $order->save();
+        $order->payment->confirmed = true;
+        $order->payment->save();
+        $user = $order->user;
+
+        Mail::to($user->email)->send(new MailSendOrder($order));
+
+        return redirect()->back()->with('success','Ordine inviato con Successo!! Mail inviata a '. $user->email);
+    }
+
+    public function backOrder(OrderItem $order){
+        $order->payment->confirmed = false;
+        $order->payment->save();
+        $user = $order->user;
+        
+        Mail::to($user->email)->send(new MailBackOrder($order));
+        
+        return redirect()->back()->with('success','Ordine Annullato con Successo!! Mail inviata a '. $user->email);
+
     }
 
     /**
@@ -109,8 +129,18 @@ class OrderAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(OrderItem $order)
     {
-        //
+        // Eliminando l'ordine si invierà una mail di eliminazione ordine
+        $user = $order->user;
+        Mail::to($user->email)->send(new MailBackOrder($order));
+
+        $order->delete();
+        /**
+         * Importante: bisegnerebbe rimborsare, ma siccome è una simulazione non è previsto ciò
+         */
+        return redirect()->back()->with('success','Ordine Eliminato definitvamente con Successo!!');
+
+
     }
 }

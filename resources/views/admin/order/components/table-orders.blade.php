@@ -99,28 +99,37 @@
 
                         <!-- opzioni -->
                         <td style="width: 400px;">
-                            <div class="flex-grap gap-5 mb-5 justify-content-center m-2 p-2 
+                            <div
+                                class="flex-grap gap-5 mb-5 justify-content-center m-2 p-2 
                             rounded">
-                                
-                                @if ($order->payment->confirmed == true)
-                                <div class="card">
-                                    <div class="card-header">Ordine Inviato</div>
-                                    <button class="btn btn-warning m-3">Annulla Ordine</button>
 
-                                </div>
-                                 
-                                    @else
+                                @if ($order->payment->confirmed == true)
+                                    <div class="card">
+                                        <div class="card-header">Ordine Inviato</div>
+                                        <a class="btn btn-warning m-3"
+                                            href="{{ route('admin.order.back', $order) }}">Annulla Ordine</a>
+
+                                    </div>
+                                @else
                                     <div class="card">
                                         <div class="card-header">Ordine in attesa</div>
-                                        <a class="btn btn-primary m-3" href="{{route('admin.order.send', $order)}}">Invia Ordine</a>
-    
+                                        <a class="btn btn-primary m-3"
+                                            href="{{ route('admin.order.send', $order) }}">Invia Ordine</a>
+
+                                        <form  action="{{ route('admin.order.delete', $order) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger m-3" 
+                                            onclick="return confirm('Sei sicuro di eliminare l\'ordine di {{ $order->user->name }}?. Questo comporterà la totale cancellazione dell\'ordine e sarà inviato l\'eventuale rimborso')">
+
+                                             Rifiuta l'ordine
+                                            </button>
+                                        </form>
                                     </div>
-                                
-
                                 @endif
-                               
 
-       
+
+
 
                             </div>
                         </td>

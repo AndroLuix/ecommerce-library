@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+
+
 
 use App\Models\Book;
 use App\Models\Card;
@@ -10,9 +12,11 @@ use App\Models\OrderItem;
 use App\Models\UserCards;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Database\Console\DumpCommand;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class OrderItemController extends Controller
 {
