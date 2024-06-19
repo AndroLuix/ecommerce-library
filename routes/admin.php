@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\OrderAdmin;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\WarehouseController;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
 
@@ -95,6 +96,16 @@ Route::controller(OrderAdminController::class)->group( function(){
  * MAIL
  */
 Route::get('email',[AdminMailController::class,'forOrder'])->name('admin.mail.order');
+
+/**
+ * warehouse - magazzino
+ */
+Route::controller(WarehouseController::class)->group( function(){
+    Route::get('/warehouse','index')->name('admin.warehouse');
+    Route::get('/warehouse/update-quantity','changeQuantity');
+    Route::post('/warehouse/add/{book_id}','plus');
+    Route::post('/warehouse/minus/{book_id}','minus');
+});
 
 
 

@@ -24,6 +24,11 @@
 
     <!-- my style -->
     <link rel="stylesheet" href="{{asset('mystyle.css')}}">
+
+    <!-- datatable -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -61,6 +66,9 @@
 
                             <li>
                                 <a class="btn btn-outline-dark" href="{{ route('admin.order') }}">Ordini</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-outline-dark" href="{{route('admin.warehouse')}}">Magazzino</a>
                             </li>
                         </div>
 

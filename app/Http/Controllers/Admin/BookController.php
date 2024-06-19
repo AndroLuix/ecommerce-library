@@ -43,6 +43,7 @@ class BookController extends Controller
         ->orWhere('price','LIKE',"%{$input}%")
         ->orWhere('author','LIKE',"%{$input}%")
         ->orWhere('description','LIKE',"%{$input}%")
+        ->orWhere('quantity','LIKE',"%{$input}%")
         ->paginate(20);
 
         if(count($books) == 0){

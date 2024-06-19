@@ -17,7 +17,6 @@
         @endif
 
         <!-- messaggi di errore e di successo -->
-        @include('components.message')
 
         <form action="{{ route('admin.massive.create') }}" method="POST"> 
             @csrf

@@ -96,6 +96,22 @@
                                     <a href="{{ route('admin.review') }}" class=" btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
+                            <!-- magazzino -->
+                            <div class="card" style="width: 15rem;">
+
+                                <a href="{{ route('admin.warehouse') }}">
+                                    <div class="text-center p-5 bg-warning">
+                                        <i class="fa fa-warehouse card-img-top" style="font-size:80px"></i>
+
+                                    </div>
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Magazzino</h5>
+                                    <p class="card-text">Gestisci la quantità dei tuoi libri</p>
+                                    <a href="{{ route('admin.warehouse') }}" class=" btn btn-primary">Vai alla pagina</a>
+                                </div>
+                            </div>
 
                             <div class="card" style="width: 15rem;">
 
@@ -109,6 +125,8 @@
                                     <a href="#" class="btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
+
+                            
 
                         </div>
                     </div>

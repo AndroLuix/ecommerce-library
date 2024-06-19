@@ -121,7 +121,6 @@
                                             @method('DELETE')
                                             <button class="btn btn-danger m-3" 
                                             onclick="return confirm('Sei sicuro di eliminare l\'ordine di {{ $order->user->name }}?. Questo comporterà la totale cancellazione dell\'ordine e sarà inviato l\'eventuale rimborso')">
-
                                              Rifiuta l'ordine
                                             </button>
                                         </form>

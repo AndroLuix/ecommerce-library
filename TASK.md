@@ -42,6 +42,7 @@ ogni Book ha il proprio sconto, pertanto bisognerà applicare un algoritmo di sc
 
 ## CRUD Ordini
 - [v] pagina ordini
+- [v] fare in modo di gestire la quantità dei libri nel magazzino ogni volta che si invia/sospende un ordine.
 - logica per confermare ordine
 : ogni volta che l'admin accetta un ordine, verrà inviata tramite mail al cliente e admin i dettagli dell'ordine
 
