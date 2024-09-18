@@ -34,54 +34,73 @@
 
             <div class="d-flex flex-row flex-wrap gap-3 pb-1 justify-content-around">
                 @foreach ($books as $book)
-                    <div class="card cardbook flex-row shadow">
-                        <div>
-                            <img class="card-img-left example-card-img-responsive p-2" style="width: 180px" 
-                                height="300px" src="{{ asset($book->image) }}" />
-
-                                 <!-- form for book -->
-                            <div class="ms-5 mb-2 gap-3" >
-
-                                <form action="{{ route('book.add') }}" method="POST" class="">
-                                    @csrf
-
-                                    <input type="number" hidden name="book_id" value="{{$book->id}}">
-                         
-                                    <button type="submit" class="card-link btn btn-outline-primary btn-sm ">
-                                        Aggiungi al Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>
-
-                                    </button>
-                                </form>
-
-                                <button href="{{route('admin.book.edit', $book)}}"
-                                 class="card-link btn btn-outline-success btn-sm mt-3"
-                                  >Acquista Ora
-                                </button>
-
-                            </div>
-
-
-                            
-                        </div>
-
-                        <div class="card-body " style="width: 11rem">
-                            <div class="card-body col-md-12">
-                                <h6 class="propriety-card card-title">{{ $book->title }}</h6>
-                                <p class="propriety-card card-text small">{{ $book->author }}</p>
-
-                                <p class="card-text">Categoria:
-                                    @isset($book->category->name)
-                                        <a href="{{route('any.home.namecategory', $book->category->name)}}"> <strong class="propriety-card small">{{ $book->category->name }}</strong></a>
-                                    </p>
+                <div class=" col-sm-3 col-5 cardbook propriety-card">
+                    <div class="card h-100 shadow-sm"> <img src="{{ asset($book->image) }}" height="200px"
+                            class="card-img-top object-fit-scale border rounded" alt="...">
+                        <div class="card-body ">
+                            <div class="clearfix mb-3">
+                                @isset($book->discount->percent)
+                                    <span class="float-start badge rounded-pill bg-primary">
+                                        {{ $book->discount->percent }} %
+                                    </span>
                                 @endisset
-                                <hr>
+
+                                <?php
+                                if (isset($book->discount->percent)) {
+                                    $discountedPrice = $book->price - $book->price * ($book->discount->percent / 100);
+                                }
+                                
+                                ?>
+                                <span class="float-end price-hp">
+                                    @isset($book->discount_id)
+                                        <del><span class="text-muted">{{ $book->price }} &euro;</span> </del> <br>
+                                        <span style="color: green">{{ round($discountedPrice, 2) }}
+                                            &euro;</span></span>
+                                @else
+                                    <span style="color: green">{{ $book->price }} &euro;</span></span>
+                                @endisset
+
+
+
                             </div>
-                            <ul class="list-group list-group-flush col-md-10">
-                                <li class="list-group-item propriety-card small">Prezzo {{ $book->price }} €</li>
-                            </ul>
-                           
+                            <h5 class="card-title propriety-card">{{ $book->title }} <small>{{$book->author}}</small></h5>
+
+                            <p><i class="propriety-card">{{ $book->category->name }}</i></p>
+
+
+
+
+
+
+                        </div>
+                        <div class="text-center my-4" style="margin-top: 100%">
+                            <p > Rimasti: <span class="propriety-card">{{ $book->quantity }}</span> </p>
+
+
+                            <div class=" d-flex flex-row justify-content-around mt-3">
+
+                                <button href="{{route('user.book.add', $book)}}"
+                                class="card-link btn btn-outline-success btn-sm mt-3"
+                                 >Acquista Ora
+                               </button>
+
+                               <button type="submit" class="card-link btn btn-outline-primary btn-sm ">
+                                Aggiungi al Carrello <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                            </button>
+
+                                <a href="{{ route('admin.book.edit', $book) }}"
+                                    class="card-link btn btn-outline-primary btn-sm" style="margin-left:5px">Modfica</a>
+
+                            </div>
+
                         </div>
                     </div>
+                </div>
+
+                
+                  
+                     
                 @endforeach
 
             </div>

@@ -37,19 +37,20 @@ class DatabaseSeeder extends Seeder
        // Group::factory()->count(10)->create();
 
         Book::factory()->count(rand(50,100))->create();
-        User::factory()->count(rand(100,1000))->create();
+        User::factory()->count(rand(100,200))->create();
 
-        Address::factory()->count(rand(200,2000))->create();
+        Address::factory()->count(rand(200,201))->create();
 
-        CreditCard::factory()->count(rand(100,1000))->create();
+        CreditCard::factory()->count(rand(100,201))->create();
 
         BookReview::factory()->count(rand(200,500))->create();
 
-        OrderItem::factory()->count(rand(500,1000))->create();
+        OrderItem::factory()->count(rand(50,100))->create();
 
-        OrderDetail::factory()->count(rand(500,1000))->create();
+        OrderDetail::factory()->count(rand(100,200))->create();
         
-        OrderPayment::factory()->count(rand(100,1000))->create();
+        OrderPayment::factory()->count(rand(100,200))->create();
         OrderReturn::factory()->count(rand(10,50))->create();
     }
+    
 }
