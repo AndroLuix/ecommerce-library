@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Discount;
@@ -16,11 +17,11 @@ class DiscountController extends Controller
     public function index()
     {
         // pagina di tutti gli sconti
-       $discounts = Discount::all();
+        $discounts = Discount::all();
         return view('admin.discount.discounts', compact('discounts'));
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,43 +31,44 @@ class DiscountController extends Controller
         //
         // validazione
         $data = request()->all();
-        
-        if($data['percent'] <= 0){
+
+        if ($data['percent'] <= 0) {
             return redirect()->back()->withErrors('Devi Inserire una Percentuale maggiore di 0');
         }
 
         $rules = [
             'name' => 'required|min:5|unique:discounts,name',
         ];
-    
+
         $customMessages = [
             'percent' => "Sono vietati numeri pari o minori di 0",
             'min' => 'Insrisci un nome più lungo',
-            'unique'=>"Esiste già uno sconto con il nome {$data['name']} "
+            'unique' => "Esiste già uno sconto con il nome {$data['name']} "
         ];
 
-        $validator =  Validator::make($data,$rules,$customMessages);
+        $validator =  Validator::make($data, $rules, $customMessages);
         // Verifica se la validazione fallisce
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
 
         //dd($data);
-       $disocunt = Discount::create($data);
+        $disocunt = Discount::create($data);
 
-        return redirect()->back()->with('success',"Sconto {$disocunt->name}  Creato");
+        return redirect()->back()->with('success', "Sconto {$disocunt->name}  Creato");
     }
 
-    public function validateActivation(Discount $discount){
+    public function validateActivation(Discount $discount)
+    {
 
-       
+
         $discount->active = !$discount->active;
         $discount->save();
-       
-        return redirect()->back();
 
+        return redirect()->back();
     }
-    public function activeDiscount(Discount $discount){
+    public function activeDiscount(Discount $discount)
+    {
         $discount->active = false;
     }
     /**
@@ -90,8 +92,9 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-    $discounts = Discount::all();;
-        return view('admin.discount.edit-discount',compact('discount','discounts'));
+        
+        $discounts = Discount::all();
+        return view('admin.discount.edit-discount', compact('discount', 'discounts'));
     }
 
     /**
@@ -100,8 +103,7 @@ class DiscountController extends Controller
     public function update(Request $request, Discount $discount)
     {
         $discount->update($request->all());
-        return redirect()->back()->with('success',"Offerta {$discount->name} Aggiornata con successo!");
-        
+        return redirect()->back()->with('success', "Offerta {$discount->name} Aggiornata con successo!");
     }
 
     /**
@@ -110,7 +112,6 @@ class DiscountController extends Controller
     public function destroy(Discount $discount)
     {
         $discount->delete();
-        return redirect()->back()->with('success','Sconto Eliminato');
-        
+        return redirect()->back()->with('success', 'Sconto Eliminato');
     }
 }

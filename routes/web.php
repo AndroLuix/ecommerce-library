@@ -92,7 +92,6 @@ Route::post('/admin/passowrd-update','updatePassword')->name('admin.password.upd
 });
 });
 
-Route::group(['middleware' => ['auth:admin'], 'prefix' => '/admin'], function () {
 
     include __DIR__ . '/admin.php';
-});
+

@@ -29,7 +29,7 @@ class BookController extends Controller
     {
         $dataModels = $this->loadCommonData();
 
-        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->paginate(50);
+        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->paginate(5);
         return view('admin.book.bookslist', $dataModels);
     }
 
@@ -44,7 +44,7 @@ class BookController extends Controller
         ->orWhere('author','LIKE',"%{$input}%")
         ->orWhere('description','LIKE',"%{$input}%")
         ->orWhere('quantity','LIKE',"%{$input}%")
-        ->paginate(20);
+        ->paginate(5);
 
         if(count($books) == 0){
             return redirect()->route('admin.book')->with('warning','Nessun contenuto trovato... ');
@@ -64,7 +64,7 @@ class BookController extends Controller
             return redirect()->route('admin.book');
         }
         $categories = Category::all();
-        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $categoryId)->paginate(50);
+        $books = Book::orderBy('updated_at', 'desc')->where('category_id', $categoryId)->paginate(5);
         //dd($books);
         return view('admin.book.bookslist', compact('books','categories','categoryId','request','categories', 'discounts'));
 
@@ -130,7 +130,7 @@ class BookController extends Controller
         
         $category = Category::where('name',$categoryName)->first();
      
-        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->where('category_id', $category->id)->paginate(50);
+        $dataModels['books'] = Book::orderBy('updated_at', 'desc')->where('category_id', $category->id)->paginate(5);
        
         return view('admin.book.bookslist',$dataModels);
 

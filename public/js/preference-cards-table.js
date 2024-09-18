@@ -1,50 +1,32 @@
+
 $(document).ready(function() {
-    // Controlla se è presente un cookie per l'impostazione delle visualizzazioni
-    var viewSetting = $.cookie('viewSetting');
-    if (viewSetting === 'table') {
-        // Nasconde le cards se l'impostazione salvata è "table"
-        $("#list-cards").hide();
-        $("#list-new-cards").hide();
-        $("#list-table").show();
-    } else if (viewSetting === 'cards') {
-        // Nasconde la tabella se l'impostazione salvata è "cards"
-        $("#list-table").hide();
-        $("#list-new-cards").hide();
-        $("#list-cards").show();
-
-    }else if(viewSetting === 'new-cards'){
-        $("#list-cards").hide();
-        $("#list-table").hide();
-
-        $("#list-new-cards").show();
-
-
+    // Funzione per mostrare la vista salvata
+    function applyUserSelection() {
+        var selectedView = localStorage.getItem('selectedView');
+        if (selectedView === 'new-cards') {
+            $('#list-table').hide();
+            $('#list-new-cards').show();
+        } else {
+            // Default o se l'utente ha scelto "Cards"
+            $('#list-table').show();
+            $('#list-new-cards').hide();
+        }
     }
 
-    // Gestisce il clic sulle opzioni "Tabella" e "Cards"
-    $(".toggle-view").click(function() {
-        // Se l'elemento cliccato è "Tabella"
-        if ($(this).hasClass("tables")) {
-            $("#list-cards").hide();
-            $("#list-new-cards").hide();
-            $("#list-table").show();
-            // Salva l'impostazione nell cookie per una settimana
-            $.cookie('viewSetting', 'table', { expires: 7, path: '/' });
-        }
-        // Se l'elemento cliccato è "Cards"
-        else if ($(this).hasClass("cards")) {
-            $("#list-table").hide();
-            $("#list-new-cards").hide();
-            $("#list-cards").show();
-            // Salva l'impostazione nell cookie per una settimana
-            $.cookie('viewSetting', 'cards', { expires: 7, path: '/' });
-        }
-        else if ($(this).hasClass("new-cards")) {
-            $("#list-table").hide();
-            $("#list-cards").hide();
-            $("#list-new-cards").show();
-            // Salva l'impostazione nell cookie per una settimana
-            $.cookie('viewSetting', 'new-cards', { expires: 7, path: '/' });
-        }
+    // Applica la selezione dell'utente salvata
+    applyUserSelection();
+
+    // Evento click sul bottone "Cards"
+    $('#cardsBtn').on('click', function() {
+        $('#list-table').show();
+        $('#list-new-cards').hide();
+        localStorage.setItem('selectedView', 'cards'); // Salva la selezione
+    });
+
+    // Evento click sul bottone "New Cards"
+    $('#newCardsBtn').on('click', function() {
+        $('#list-table').hide();
+        $('#list-new-cards').show();
+        localStorage.setItem('selectedView', 'new-cards'); // Salva la selezione
     });
 });

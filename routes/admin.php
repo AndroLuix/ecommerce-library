@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\WarehouseController;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
+Route::group(['middleware' => ['auth:admin'], 'prefix' => '/admin'], function () {
 
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -116,3 +117,4 @@ Route::controller(ReportController::class)->group( function(){
 });
 
 
+});

@@ -33,7 +33,7 @@
                                     <small>Percentuale <strong style="color: green">%</strong></small>
                                     <input name="percent" value="{{$discount->percent}}" type="number" class="form-control" id="inputPassword4" placeholder="Percentuale"> 
                                   
-                                <button type="submit" class="btn btn-primary mt-2">Modifica</button>
+                                <button type="submit" class="btn btn-primary mt-2">Aggiorna</button>
                               </form>
 
 
