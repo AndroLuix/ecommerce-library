@@ -12,10 +12,20 @@ class ClientsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $clients = User::paginate(20);
+
+        if(isset($request->input)){
+            $input = $request->input;
+            $clients = User::where('name','LIKE',"%{$input}%")
+            ->orWhere('email','LIKE',"%{$input}%")
+            ->orWhere('created_at','LIKE',"%{$input}%")
+            ->orWhere('email_verified_at','LIKE',"%{$input}%")
+            ->paginate(20)->appends( $input);
+    
+        }
         return view('admin.client.client', compact('clients'));
     }
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MassiveController;
 use App\Http\Controllers\Admin\OrderAdmin;
 use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\OrderItemController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\WarehouseController;
 use App\Models\OrderItem;
@@ -107,5 +108,11 @@ Route::controller(WarehouseController::class)->group( function(){
     Route::post('/warehouse/minus/{book_id}','minus');
 });
 
+/**
+ * Reports
+ */
+Route::controller(ReportController::class)->group( function(){
+    Route::get('/reports','index')->name('admin.report');
+});
 
 

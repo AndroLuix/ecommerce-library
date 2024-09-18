@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy('updated_at', 'desc')->paginate(25);
+        $books = Book::orderBy('updated_at', 'desc')->paginate(5);
         $categories = Category::all();
         
         return view('home',compact('books','categories'));
@@ -48,7 +48,7 @@ class HomeController extends Controller
      
         $books = Book::orderBy('updated_at', 'desc')
         ->where('category_id', $categoryId)
-        ->paginate(25);
+        ->paginate(5);
         return view('home', compact('books','categories','categoryId','request'));
     }
 

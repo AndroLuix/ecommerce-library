@@ -13,8 +13,6 @@
                         </div>
                     @endif
 
-                    <!-- messaggi di errore e di scuccesso -->
-                    @include('components.message')
 
 
                     <div class="d-flex flex-row flex-wrap gap-2 justify-content-around">
@@ -34,7 +32,7 @@
                     <div style="width: 60%" class="ms-5 ">
 
                         <!-- barra di ricerca -->
-                        <form action="" class="d-flex flex-row" style="height: 40px" method="POST">
+                        <form action="{{route('admin.client')}}" class="d-flex flex-row" style="height: 40px" method="GET">
                             @csrf
                             <input class="form-control" name="input" onkeyup="searchItems();" id="searchBook" type="search"
                                 placeholder="cerca per nome o data iscrizione" aria-label="Search">

@@ -100,9 +100,8 @@
                             <div class="card" style="width: 15rem;">
 
                                 <a href="{{ route('admin.warehouse') }}">
-                                    <div class="text-center p-5 bg-warning">
-                                        <i class="fa fa-warehouse card-img-top" style="font-size:80px"></i>
-
+                                    <div class="text-center p-5 bg-dark">
+                                        <i class="fa fa-search card-img-top" style="font-size:80px"></i>
                                     </div>
                                 </a>
 
@@ -120,9 +119,9 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Dati</h5>
-                                    <p class="card-text">Scarica dati in file Excell</p>
-                                    <a href="#" class="btn btn-primary">Vai alla pagina</a>
+                                    <h5 class="card-title">Reports</h5>
+                                    <p class="card-text">Visualizza i reports e scarica i dati</p>
+                                    <a href="{{route('admin.report')}}" class="btn btn-primary">Vai alla pagina</a>
                                 </div>
                             </div>
 

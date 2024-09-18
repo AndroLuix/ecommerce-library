@@ -35,6 +35,7 @@
                         @endforeach
 
 
+
                         <br>
 
                     </td>
@@ -50,7 +51,7 @@
                             <br>
                             <small>Modifiche del profilo dall'utente {{ $client->updated_at }}</small>
                             <br>
-                            <small>Email verificata {{ $client->email_verified_at }}</small>
+                            <small>Email verificata {{ ($client->email_verified_at) ?? 'Non verificato'}}</small>
                         </div>
 
                     </td>
