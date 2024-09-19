@@ -17,8 +17,15 @@ class DiscountController extends Controller
     public function index()
     {
         // pagina di tutti gli sconti
-        $discounts = Discount::all();
+        $discounts = Discount::with(relations: 'books')->orderBy('created_at', 'desc')->get();
         return view('admin.discount.discounts', compact('discounts'));
+    }
+
+    public function removeBook($id){
+        $book = Book::find($id);
+        $book->discount_id =  null;
+        $book->save();
+        
     }
 
 
@@ -92,8 +99,10 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
+      
+
         
-        $discounts = Discount::all();
+        $discounts = Discount::with(relations: 'books')->orderBy('created_at', 'desc')->get();
         return view('admin.discount.edit-discount', compact('discount', 'discounts'));
     }
 

@@ -23,7 +23,7 @@ Il progetto non è ancora terminato
 
 Funzione | MySQL / MariaDB | PostgreSQL | SQLite | PHP 8 | Composer | Node.js v.18
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
-substr | ✅ | ❌ | ❌ | ✅ | ✅ | ✅
+substr | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ 
 
 
 
@@ -55,6 +55,11 @@ Apri il progetto con il temrinale e digita
 in seguito per la configurazione di bootsrap/ui
   ```
  npm install && npm run dev
+ ```
+
+ in segioto l'avvio del server
+  ```
+  php artisan serve
  ```
  - Effettua la migrazione per la struttura del database
 ```

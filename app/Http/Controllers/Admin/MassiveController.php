@@ -19,11 +19,12 @@ class MassiveController extends Controller
         
         $books = Book::orderBy('updated_at', 'desc')->get();
         $discounts = Discount::orderBy('updated_at','desc')->get();
-        $booksWithoutMassive = Book::whereHas('discount_id')->
-        orderBy('update_at', 'desc')->get();
-        dd($booksWithoutMassive);
+        
 
         $massive = Group::orderBy('updated_at','desc')->get();
+
+
+
 
         return view('admin.massive.massive',compact('books','discounts','massive'));
  

@@ -17,15 +17,17 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <!-- bootstrap -->
 
-{{--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
- --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
  
+ 
+<!-- axios --> 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- font icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- sweet alert -->
    
 
@@ -37,7 +39,7 @@
     <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+   {{--  @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
 </head>
 
@@ -138,7 +140,7 @@
     </div>
     @include('components.footer')
 </body>
-<script src="{{asset('js/app.js')}}"></script>
+<script defer src="{{asset('js/app.js')}}"></script>
 
 </html>
 

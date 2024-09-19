@@ -1,17 +1,32 @@
+// Funzione per mostrare i bottoni
 function showButton(buttonId) {
-    $(buttonId).show('slow');
+    var button = document.querySelector(buttonId);
+    if (button) {
+        button.style.display = 'block';
+        // Utilizza una transizione se desideri effetti di animazione
+        button.style.transition = 'opacity 0.5s';
+        button.style.opacity = 1;
+    }
 }
 
+// Funzione per aprire un modale
 function openModal(idElement) {
-    $(idElement).modal('show');
-}
-function openModalPagination(idElement){
-    $(idElement).modal('show');
+    var modalElement = document.querySelector(idElement);
+    if (modalElement) {
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    }
 }
 
+// Funzione per chiudere un modale
 function closeModal(idElement) {
-    $(idElement).modal('hide')
+    var modalElement = document.querySelector(idElement);
+    if (modalElement) {
+        var modal = new bootstrap.Modal(modalElement);
+        modal.hide();
+    }
 }
+
 
 // funzione filtri ricerca per card e table per books
 function searchItems() {

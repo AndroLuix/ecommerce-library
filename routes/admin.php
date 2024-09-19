@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\WarehouseController;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
+
+
 Route::group(['middleware' => ['auth:admin'], 'prefix' => '/admin'], function () {
 
 
@@ -35,6 +37,9 @@ Route::put('/sconti/{discount}/update', [DiscountController::class, 'update'])->
 Route::get('/sconti/{discount}/validate', [DiscountController::class, 'validateActivation'])->name('admin.discount.validate');
 Route::delete('sconti/{discount}/delete', [DiscountController::class, 'destroy'])->name('admin.discount.delete');
 
+// rimuovi singolo libro con axios 
+Route::get(uri: '/discount-remove-book/{id}', action: [DiscountController::class,'removeBook']);
+
 /**
  * Massive 
  */
@@ -52,8 +57,8 @@ Route::put('/massive/{massId}/discount/update',[MassiveController::class,'update
  * Categorie
  */
 
-Route::post('/category/create', [CategoryController::class, 'create'])->name('admin.cateogory.create');
-Route::put('/category/edit', [CategoryController::class, 'update'])->name('admin.cateogory.update');
+Route::post('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+Route::put('/category/edit', [CategoryController::class, 'update'])->name('admin.category.update');
 
 /**
  * Books
